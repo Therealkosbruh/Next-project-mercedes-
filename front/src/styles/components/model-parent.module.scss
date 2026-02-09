@@ -1,0 +1,131 @@
+.modelParent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #8B1538;
+  border-radius: 100px 100px 0 0;
+  overflow: hidden;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+.modelContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  min-height: 100vh;
+  align-items: center;
+
+  @media (max-width: 968px) {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px;
+  }
+}
+
+.modelWrapper {
+  flex: 1;
+  min-width: 0;
+  height: 600px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+
+  @media (max-width: 968px) {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+.textContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #ffffff;
+
+  @media (max-width: 968px) {
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+
+  @media (max-width: 968px) {
+    font-size: 36px;
+  }
+}
+
+.annotationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.annotationItem {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.annotationTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.annotationDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
