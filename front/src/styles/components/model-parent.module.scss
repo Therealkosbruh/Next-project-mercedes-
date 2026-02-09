@@ -1,17 +1,27 @@
 .modelParent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #8B1538;
   border-radius: 100px 100px 0 0;
-  overflow: hidden;
-  transform: translateY(100%);
-  transition: transform 0.3s ease-out;
-  
-  &.visible {
-    transform: translateY(0);
+  overflow-y: auto;
+  overflow-x: hidden;
+  will-change: transform;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -22,7 +32,7 @@
   display: flex;
   flex-direction: row;
   gap: 40px;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   align-items: center;
 
   @media (max-width: 968px) {
@@ -36,7 +46,8 @@
   flex: 1;
   min-width: 0;
   height: 600px;
-  position: relative;
+  position: sticky;
+  top: 20px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   overflow: hidden;
@@ -44,6 +55,8 @@
   @media (max-width: 968px) {
     width: 100%;
     height: 400px;
+    position: relative;
+    top: 0;
   }
 }
 
@@ -74,28 +87,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-height: 500px;
-  overflow-y: auto;
-  padding-right: 10px;
-
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-  }
 }
 
 .annotationItem {

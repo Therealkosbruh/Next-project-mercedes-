@@ -1,8 +1,6 @@
 import { getDictionary } from '@/i18n/get-dictionary';
 import type { Locale } from '@/i18n/config';
-import Intro from '@/components/Intro';
-import ModelParentWrapper from '@/components/ModelParentWrapper';
-import styles from "@/styles/page.module.scss";
+import PageContent from '@/components/PageContent';
 import type { Metadata } from 'next';
 
 interface HomeProps {
@@ -24,18 +22,11 @@ export default async function Home({ params }: HomeProps) {
   const dict = await getDictionary(lang);
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.section}>
-        <Intro 
-          mainTitle={dict.homePage.introMainTitle}
-          shortCast={dict.homePage.introShortCast}
-        />
-      </div>
-      
-      <ModelParentWrapper 
-        title={dict.g63.title}
-        annotations={dict.g63.annotations}
-      />
-    </div>
+    <PageContent 
+      introMainTitle={dict.homePage.introMainTitle}
+      introShortCast={dict.homePage.introShortCast}
+      modelTitle={dict.g63.title}
+      annotations={dict.g63.annotations}
+    />
   );
 }
