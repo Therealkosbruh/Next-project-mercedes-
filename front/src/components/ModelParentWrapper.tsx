@@ -9,6 +9,8 @@ interface Annotation {
   readonly title: string;
   readonly description: string;
   readonly position: readonly [number, number, number];
+  readonly cameraPosition?: readonly [number, number, number];
+  readonly specs?: readonly string[];
 }
 
 interface ModelParentWrapperProps {
@@ -119,17 +121,17 @@ export default function ModelParentWrapper({ title, annotations, onProgressChang
 
           if (scrollingDown && !isAtBottom) {
             modelElement.scrollTop += deltaY;
-            e.preventDefault();
+            if (e.cancelable) e.preventDefault();
             return;
           }
 
           if (scrollingUp) {
             if (!isAtTop) {
               modelElement.scrollTop += deltaY;
-              e.preventDefault();
+              if (e.cancelable) e.preventDefault();
               return;
             } else {
-              e.preventDefault();
+              if (e.cancelable) e.preventDefault();
               const newProgress = Math.max(0, targetProgress - step);
               setTargetProgress(newProgress);
               return;
@@ -139,7 +141,7 @@ export default function ModelParentWrapper({ title, annotations, onProgressChang
       }
 
       if (targetProgress < 1) {
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         if (scrollingDown) {
           const newProgress = Math.min(1, targetProgress + step);
           setTargetProgress(newProgress);
