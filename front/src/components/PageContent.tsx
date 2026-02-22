@@ -10,12 +10,17 @@ interface Annotation {
   readonly title: string;
   readonly description: string;
   readonly position: readonly [number, number, number];
+  readonly cameraPosition?: readonly [number, number, number];
+  readonly specs?: readonly string[];
 }
 
 interface PageContentProps {
   introMainTitle: string;
   introShortCast: string;
   modelTitle: string;
+  modelHeroTitle: string;
+  modelDescription: string;
+  moreModels: string;
   annotations: readonly Annotation[];
 }
 
@@ -23,6 +28,9 @@ export default function PageContent({
   introMainTitle,
   introShortCast,
   modelTitle,
+  modelHeroTitle,
+  modelDescription,
+  moreModels,
   annotations,
 }: PageContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -44,6 +52,9 @@ export default function PageContent({
 
       <ModelParentWrapper
         title={modelTitle}
+        heroTitle={modelHeroTitle}
+        description={modelDescription}
+        moreModels={moreModels}
         annotations={annotations}
         onProgressChange={setScrollProgress}
       />

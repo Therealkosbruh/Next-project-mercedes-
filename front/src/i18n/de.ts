@@ -8,6 +8,10 @@ const de = {
   },
   g63: {
     title: "G63 AMG",
+    heroTitle: "G63 AMG Brabus",
+    description:
+      "Der G63 AMG BRABUS ist eine ultra-exklusive Version des legendären Geländewagens, die markantes Design mit extremer Leistung verbindet. Auf Basis des Mercedes-AMG G63 und von Brabus veredelt, vereint er Luxus, Kraft und Exklusivität in einem Fahrzeug.",
+    moreModels: "Mehr Modelle",
     annotations: [
       {
         id: "default",

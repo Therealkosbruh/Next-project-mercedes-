@@ -15,12 +15,18 @@ interface Annotation {
 
 interface ModelParentWrapperProps {
   title: string;
+  heroTitle: string;
+  description: string;
+  moreModels: string;
   annotations: readonly Annotation[];
   onProgressChange: (progress: number) => void;
 }
 
 export default function ModelParentWrapper({
   title,
+  heroTitle,
+  description,
+  moreModels,
   annotations,
   onProgressChange,
 }: ModelParentWrapperProps) {
@@ -187,6 +193,9 @@ export default function ModelParentWrapper({
       <ModelParent
         ref={modelParentRef}
         title={title}
+        heroTitle={heroTitle}
+        description={description}
+        moreModels={moreModels}
         annotations={annotations}
         progress={progress}
       />

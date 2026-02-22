@@ -8,6 +8,10 @@ const en = {
   },
   g63: {
     title: "G63 AMG",
+    heroTitle: "G63 AMG Brabus",
+    description:
+      "The G63 AMG BRABUS is an ultra-premium interpretation of the iconic off-road SUV, blending aggressive styling with extreme performance. Based on the Mercedes-AMG G63 and refined by Brabus, it delivers luxury, power, and exclusivity in a single machine.",
+    moreModels: "More Models",
     annotations: [
       {
         id: "default",

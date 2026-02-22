@@ -28,6 +28,9 @@ export default async function Home({ params }: HomeProps) {
       introMainTitle={dict.homePage.introMainTitle}
       introShortCast={dict.homePage.introShortCast}
       modelTitle={dict.g63.title}
+      modelHeroTitle={dict.g63.heroTitle}
+      modelDescription={dict.g63.description}
+      moreModels={dict.g63.moreModels}
       annotations={dict.g63.annotations}
     />
   );

@@ -53,6 +53,7 @@
   }
 
   @media (max-width: 968px) {
+    order: 2;
     height: 400px;
   }
 }
@@ -107,6 +108,28 @@
   flex-direction: column;
   gap: 24px;
   color: #ffffff;
+
+  @media (max-width: 968px) {
+    display: contents;
+  }
+}
+
+.introBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (max-width: 968px) {
+    order: 1;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .title {
@@ -115,17 +138,60 @@
   margin: 0;
 
   @media (max-width: 968px) {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 
-.annotationsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 560px;
+}
+
+.moreModelsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #6b21a8 0%, #7c3aed 50%, #4c1d95 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  align-self: flex-start;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  &:hover {
+    border-color: silver;
+  }
 
   @media (max-width: 968px) {
-    display: none;
+    align-self: center;
+  }
+}
+
+.moreModelsBtnIcon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -136,6 +202,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    order: 3;
   }
 }
 
@@ -146,6 +213,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin: 0 0 8px 0;
+
+  @media (max-width: 968px) {
+    animation: fadeInUp 0.3s ease both;
+  }
 }
 
 .mobileSpecsItem {
@@ -153,36 +224,8 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
-}
 
-.annotationItem {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(4px);
+  @media (max-width: 968px) {
+    animation: fadeInUp 0.3s ease both;
   }
-
-  &.active {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-}
-
-.annotationTitle {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-}
-
-.annotationDescription {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
 }

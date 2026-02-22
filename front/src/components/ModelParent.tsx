@@ -2,6 +2,7 @@
 
 import { useState, forwardRef } from "react";
 import ModelComponent from "./ModelComponent";
+import TextContent from "./TextContent";
 import styles from "@/styles/components/model-parent.module.scss";
 
 interface Annotation {
@@ -15,12 +16,15 @@ interface Annotation {
 
 interface ModelParentProps {
   title: string;
+  heroTitle: string;
+  description: string;
+  moreModels: string;
   annotations: readonly Annotation[];
   progress: number;
 }
 
 const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
-  ({ title, annotations, progress }, ref) => {
+  ({ title, heroTitle, description, moreModels, annotations, progress }, ref) => {
     const [activeAnnotation, setActiveAnnotation] = useState<string | null>(
       annotations.length > 0 ? annotations[0].id : null,
     );
@@ -59,39 +63,12 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
         }}
       >
         <div className={styles.modelContainer}>
-          <div className={styles.textContent}>
-            <h2 className={styles.title}>{title}</h2>
-
-            <div className={styles.annotationsList}>
-              {annotations.map((annotation) => (
-                <div
-                  key={annotation.id}
-                  className={`${styles.annotationItem} ${
-                    activeAnnotation === annotation.id ? styles.active : ""
-                  }`}
-                  onClick={() => setActiveAnnotation(annotation.id)}
-                >
-                  <h3 className={styles.annotationTitle}>{annotation.title}</h3>
-                  <p className={styles.annotationDescription}>
-                    {annotation.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {activeAnnotationData?.specs && (
-              <div className={styles.mobileSpecs}>
-                <p className={styles.mobileSpecsTitle}>
-                  {activeAnnotationData.title}
-                </p>
-                {activeAnnotationData.specs.map((spec, i) => (
-                  <p key={i} className={styles.mobileSpecsItem}>
-                    · {spec}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
+          <TextContent
+            heroTitle={heroTitle}
+            description={description}
+            moreModels={moreModels}
+            activeAnnotationData={activeAnnotationData}
+          />
 
           <div className={styles.modelWrapper}>
             <ModelComponent
