@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { mbCorpo } from '@/lib/fonts';
-import { i18n, type Locale } from '@/i18n/config';
+import { mbCorpo } from "@/lib/fonts";
+import { i18n, type Locale } from "@/i18n/config";
 import "../../styles/globals.scss";
 
 export async function generateStaticParams() {
@@ -17,12 +17,10 @@ export default async function RootLayout({
   params,
 }: RootLayoutProps) {
   const { lang } = await params;
-  
+
   return (
     <html lang={lang} className={mbCorpo.variable}>
-      <body className={mbCorpo.className}>
-        {children}
-      </body>
+      <body className={mbCorpo.className}>{children}</body>
     </html>
   );
 }

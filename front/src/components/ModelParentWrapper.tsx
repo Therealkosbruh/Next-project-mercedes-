@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import ModelParent from './ModelParent';
-import styles from '@/styles/page.module.scss';
+import { useState, useEffect, useRef } from "react";
+import ModelParent from "./ModelParent";
+import styles from "@/styles/page.module.scss";
 
 interface Annotation {
   readonly id: string;
@@ -19,7 +19,11 @@ interface ModelParentWrapperProps {
   onProgressChange: (progress: number) => void;
 }
 
-export default function ModelParentWrapper({ title, annotations, onProgressChange }: ModelParentWrapperProps) {
+export default function ModelParentWrapper({
+  title,
+  annotations,
+  onProgressChange,
+}: ModelParentWrapperProps) {
   const [progress, setProgress] = useState(0);
   const [targetProgress, setTargetProgress] = useState(0);
   const modelParentRef = useRef<HTMLDivElement>(null);
@@ -67,7 +71,9 @@ export default function ModelParentWrapper({ title, annotations, onProgressChang
         const modelElement = modelParentRef.current;
         if (modelElement) {
           const isAtTop = modelElement.scrollTop <= 0;
-          const isAtBottom = modelElement.scrollTop + modelElement.clientHeight >= modelElement.scrollHeight - 1;
+          const isAtBottom =
+            modelElement.scrollTop + modelElement.clientHeight >=
+            modelElement.scrollHeight - 1;
 
           if (scrollingDown && !isAtBottom) {
             modelElement.scrollTop += delta;
@@ -117,7 +123,9 @@ export default function ModelParentWrapper({ title, annotations, onProgressChang
         const modelElement = modelParentRef.current;
         if (modelElement) {
           const isAtTop = modelElement.scrollTop <= 0;
-          const isAtBottom = modelElement.scrollTop + modelElement.clientHeight >= modelElement.scrollHeight - 1;
+          const isAtBottom =
+            modelElement.scrollTop + modelElement.clientHeight >=
+            modelElement.scrollHeight - 1;
 
           if (scrollingDown && !isAtBottom) {
             modelElement.scrollTop += deltaY;
@@ -157,24 +165,26 @@ export default function ModelParentWrapper({ title, annotations, onProgressChang
       lastTouchY.current = 0;
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [targetProgress]);
 
   const isActive = progress > 0.3;
 
   return (
-    <div className={`${styles.modelParentWrapper} ${isActive ? styles.active : ''}`}>
-      <ModelParent 
+    <div
+      className={`${styles.modelParentWrapper} ${isActive ? styles.active : ""}`}
+    >
+      <ModelParent
         ref={modelParentRef}
         title={title}
         annotations={annotations}

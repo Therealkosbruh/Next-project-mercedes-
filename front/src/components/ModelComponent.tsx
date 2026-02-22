@@ -1,10 +1,15 @@
-'use client';
+"use client";
 
-import { useRef, Suspense, useEffect } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import { useGLTF, Environment, PerspectiveCamera, Html } from '@react-three/drei';
-import * as THREE from 'three';
-import annotationStyles from '@/styles/components/annotation.module.scss';
+import { useRef, Suspense, useEffect } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import {
+  useGLTF,
+  Environment,
+  PerspectiveCamera,
+  Html,
+} from "@react-three/drei";
+import * as THREE from "three";
+import annotationStyles from "@/styles/components/annotation.module.scss";
 
 interface Annotation {
   readonly id: string;
@@ -24,37 +29,40 @@ interface ModelProps {
 function AnnotationMarker({
   annotation,
   isActive,
-  onClick
+  onClick,
 }: {
   annotation: Annotation;
   isActive: boolean;
   onClick: () => void;
 }) {
-  const hasStats = annotation.id !== 'default' && annotation.specs && annotation.specs.length > 0;
+  const hasStats =
+    annotation.id !== "default" &&
+    annotation.specs &&
+    annotation.specs.length > 0;
 
   return (
     <group position={[...annotation.position] as [number, number, number]}>
       <mesh onClick={onClick}>
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshBasicMaterial
-          color={isActive ? '#ffffff' : '#ffcccc'}
+          color={isActive ? "#ffffff" : "#ffcccc"}
           transparent
           opacity={isActive ? 1 : 0.8}
         />
       </mesh>
       {!isActive && (
-        <Html distanceFactor={10} style={{ pointerEvents: 'none' }}>
+        <Html distanceFactor={10} style={{ pointerEvents: "none" }}>
           <div
             style={{
-              background: 'rgba(139,21,56,0.85)',
-              color: '#fff',
-              padding: '4px 10px',
-              borderRadius: '4px',
-              fontSize: '12px',
+              background: "rgba(139,21,56,0.85)",
+              color: "#fff",
+              padding: "4px 10px",
+              borderRadius: "4px",
+              fontSize: "12px",
               fontWeight: 600,
-              whiteSpace: 'nowrap',
-              cursor: 'pointer',
-              pointerEvents: 'none',
+              whiteSpace: "nowrap",
+              cursor: "pointer",
+              pointerEvents: "none",
             }}
           >
             {annotation.title}
@@ -62,7 +70,7 @@ function AnnotationMarker({
         </Html>
       )}
       {isActive && hasStats && (
-        <Html style={{ pointerEvents: 'none' }}>
+        <Html style={{ pointerEvents: "none" }}>
           <div className={annotationStyles.statsOverlay}>
             <div className={annotationStyles.statsLine} />
             <div className={annotationStyles.statsPanel}>
@@ -80,14 +88,18 @@ function AnnotationMarker({
   );
 }
 
-function Model({ activeAnnotation, onAnnotationClick, annotations }: ModelProps) {
-  const { scene } = useGLTF('/models/g63/source/g-wagon.glb');
+function Model({
+  activeAnnotation,
+  onAnnotationClick,
+  annotations,
+}: ModelProps) {
+  const { scene } = useGLTF("/models/g63/source/g-wagon.glb");
   const modelRef = useRef<THREE.Group>(null);
   const { camera } = useThree();
 
   useEffect(() => {
     if (activeAnnotation && modelRef.current) {
-      const annotation = annotations.find(a => a.id === activeAnnotation);
+      const annotation = annotations.find((a) => a.id === activeAnnotation);
       if (annotation) {
         const [x, y, z] = annotation.position;
         const targetPosition = annotation.cameraPosition
@@ -117,11 +129,7 @@ function Model({ activeAnnotation, onAnnotationClick, annotations }: ModelProps)
 
   return (
     <group ref={modelRef}>
-      <primitive
-        object={scene}
-        scale={1}
-        position={[0, -1, 0]}
-      />
+      <primitive object={scene} scale={1} position={[0, -1, 0]} />
 
       {annotations.map((annotation) => (
         <AnnotationMarker
@@ -153,19 +161,21 @@ interface ModelComponentProps {
 export default function ModelComponent({
   activeAnnotation,
   onAnnotationClick,
-  annotations
+  annotations,
 }: ModelComponentProps) {
   return (
-    <Canvas
-      style={{ width: '100%', height: '100%' }}
-      gl={{ antialias: true }}
-    >
+    <Canvas style={{ width: "100%", height: "100%" }} gl={{ antialias: true }}>
       <PerspectiveCamera makeDefault position={[8, 3, 8]} fov={45} />
 
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-      <spotLight position={[0, 10, 0]} angle={0.3} penumbra={1} intensity={0.8} />
+      <spotLight
+        position={[0, 10, 0]}
+        angle={0.3}
+        penumbra={1}
+        intensity={0.8}
+      />
 
       <Suspense fallback={<Loader />}>
         <Model
@@ -180,4 +190,4 @@ export default function ModelComponent({
   );
 }
 
-useGLTF.preload('/models/g63/source/g-wagon.glb');
+useGLTF.preload("/models/g63/source/g-wagon.glb");

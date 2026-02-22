@@ -1,7 +1,7 @@
-import 'server-only';
-import type { Locale } from './config';
-import en from './en';
-import de from './de';
+import "server-only";
+import type { Locale } from "./config";
+import en from "./en";
+import de from "./de";
 
 const dictionaries = {
   en: en,

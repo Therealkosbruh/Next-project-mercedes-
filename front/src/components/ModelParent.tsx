@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, forwardRef } from 'react';
-import ModelComponent from './ModelComponent';
-import styles from '@/styles/components/model-parent.module.scss';
+import { useState, forwardRef } from "react";
+import ModelComponent from "./ModelComponent";
+import styles from "@/styles/components/model-parent.module.scss";
 
 interface Annotation {
   readonly id: string;
@@ -22,30 +22,40 @@ interface ModelParentProps {
 const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
   ({ title, annotations, progress }, ref) => {
     const [activeAnnotation, setActiveAnnotation] = useState<string | null>(
-      annotations.length > 0 ? annotations[0].id : null
+      annotations.length > 0 ? annotations[0].id : null,
     );
 
     const handlePrev = () => {
-      const currentIndex = annotations.findIndex(a => a.id === activeAnnotation);
-      const prevIndex = currentIndex <= 0 ? annotations.length - 1 : currentIndex - 1;
+      const currentIndex = annotations.findIndex(
+        (a) => a.id === activeAnnotation,
+      );
+      const prevIndex =
+        currentIndex <= 0 ? annotations.length - 1 : currentIndex - 1;
       setActiveAnnotation(annotations[prevIndex].id);
     };
 
     const handleNext = () => {
-      const currentIndex = annotations.findIndex(a => a.id === activeAnnotation);
-      const nextIndex = currentIndex >= annotations.length - 1 ? 0 : currentIndex + 1;
+      const currentIndex = annotations.findIndex(
+        (a) => a.id === activeAnnotation,
+      );
+      const nextIndex =
+        currentIndex >= annotations.length - 1 ? 0 : currentIndex + 1;
       setActiveAnnotation(annotations[nextIndex].id);
     };
 
-    const currentIndex = annotations.findIndex(a => a.id === activeAnnotation);
-    const activeAnnotationData = annotations.find(a => a.id === activeAnnotation);
+    const currentIndex = annotations.findIndex(
+      (a) => a.id === activeAnnotation,
+    );
+    const activeAnnotationData = annotations.find(
+      (a) => a.id === activeAnnotation,
+    );
 
     return (
       <div
         ref={ref}
         className={styles.modelParent}
         style={{
-          transform: `translateY(${Math.max(0, (1 - progress) * 100)}%)`
+          transform: `translateY(${Math.max(0, (1 - progress) * 100)}%)`,
         }}
       >
         <div className={styles.modelContainer}>
@@ -57,7 +67,7 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
                 <div
                   key={annotation.id}
                   className={`${styles.annotationItem} ${
-                    activeAnnotation === annotation.id ? styles.active : ''
+                    activeAnnotation === annotation.id ? styles.active : ""
                   }`}
                   onClick={() => setActiveAnnotation(annotation.id)}
                 >
@@ -71,9 +81,13 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
 
             {activeAnnotationData?.specs && (
               <div className={styles.mobileSpecs}>
-                <p className={styles.mobileSpecsTitle}>{activeAnnotationData.title}</p>
+                <p className={styles.mobileSpecsTitle}>
+                  {activeAnnotationData.title}
+                </p>
                 {activeAnnotationData.specs.map((spec, i) => (
-                  <p key={i} className={styles.mobileSpecsItem}>· {spec}</p>
+                  <p key={i} className={styles.mobileSpecsItem}>
+                    · {spec}
+                  </p>
                 ))}
               </div>
             )}
@@ -86,13 +100,21 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
               annotations={annotations}
             />
             <div className={styles.modelControls}>
-              <button className={styles.controlBtn} onClick={handlePrev} aria-label="Previous view">
+              <button
+                className={styles.controlBtn}
+                onClick={handlePrev}
+                aria-label="Previous view"
+              >
                 &#8249;
               </button>
               <span className={styles.controlCounter}>
                 {currentIndex + 1} / {annotations.length}
               </span>
-              <button className={styles.controlBtn} onClick={handleNext} aria-label="Next view">
+              <button
+                className={styles.controlBtn}
+                onClick={handleNext}
+                aria-label="Next view"
+              >
                 &#8250;
               </button>
             </div>
@@ -100,9 +122,9 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-ModelParent.displayName = 'ModelParent';
+ModelParent.displayName = "ModelParent";
 
 export default ModelParent;

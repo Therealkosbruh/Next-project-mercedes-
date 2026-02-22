@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Intro from './Intro';
-import ModelParentWrapper from './ModelParentWrapper';
-import styles from '@/styles/page.module.scss';
+import { useState } from "react";
+import Intro from "./Intro";
+import ModelParentWrapper from "./ModelParentWrapper";
+import styles from "@/styles/page.module.scss";
 
 interface Annotation {
   readonly id: string;
@@ -19,33 +19,30 @@ interface PageContentProps {
   annotations: readonly Annotation[];
 }
 
-export default function PageContent({ 
-  introMainTitle, 
-  introShortCast, 
-  modelTitle, 
-  annotations 
+export default function PageContent({
+  introMainTitle,
+  introShortCast,
+  modelTitle,
+  annotations,
 }: PageContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const introOpacity = Math.max(0, 1 - (scrollProgress - 0.2) / 0.5);
-  const introScale = 1 - (scrollProgress * 0.05); 
+  const introScale = 1 - scrollProgress * 0.05;
 
   return (
     <div className={styles.pageWrapper}>
-      <div 
+      <div
         className={styles.section}
         style={{
           opacity: introOpacity,
           transform: `scale(${introScale})`,
-          pointerEvents: scrollProgress > 0.5 ? 'none' : 'all'
+          pointerEvents: scrollProgress > 0.5 ? "none" : "all",
         }}
       >
-        <Intro 
-          mainTitle={introMainTitle}
-          shortCast={introShortCast}
-        />
+        <Intro mainTitle={introMainTitle} shortCast={introShortCast} />
       </div>
-      
-      <ModelParentWrapper 
+
+      <ModelParentWrapper
         title={modelTitle}
         annotations={annotations}
         onProgressChange={setScrollProgress}

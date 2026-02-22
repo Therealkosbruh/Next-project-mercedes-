@@ -19,7 +19,7 @@ export default function Intro({ mainTitle, shortCast }: IntroProps) {
           className={styles.logo}
         />
       </div>
-      
+
       <div className={styles.textContainer}>
         <h1 className={styles.mainTitle}>{mainTitle}</h1>
         <p className={styles.shortCast}>{shortCast}</p>
