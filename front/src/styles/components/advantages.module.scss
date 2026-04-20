@@ -1,0 +1,128 @@
+.section {
+  padding: 80px 20px 140px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 100px;
+  align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 60px;
+  }
+}
+
+// ── Card ─────────────────────────────────────────────────────────
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+
+  // Entrance animation — JS adds .visible when card enters scroll viewport
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Chess offset: every even card drops down to create the stagger
+  &:nth-child(2n) {
+    padding-top: 220px;
+
+    @media (max-width: 768px) {
+      padding-top: 0;
+    }
+  }
+
+  &:hover .title,
+  &.touched .title {
+    opacity: 0.72;
+  }
+}
+
+.category {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px 0;
+  transition: opacity 0.3s ease;
+}
+
+// position: relative is required for next/image fill mode
+.imageWrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px 24px;
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+
+.learnMoreBtn {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 9px 20px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.card:hover .imageOverlay,
+.card.touched .imageOverlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.card:hover .learnMoreBtn,
+.card.touched .learnMoreBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover .image,
+.card.touched .image {
+  transform: scale(1.04);
+}

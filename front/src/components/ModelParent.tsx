@@ -3,6 +3,8 @@
 import { useState, forwardRef } from "react";
 import ModelComponent from "./ModelComponent";
 import TextContent from "./TextContent";
+import Advantages from "./Advantages";
+import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/components/model-parent.module.scss";
 
 interface Annotation {
@@ -20,11 +22,13 @@ interface ModelParentProps {
   description: string;
   moreModels: string;
   annotations: readonly Annotation[];
+  advantages: readonly AdvantageItem[];
+  advantagesLearnMore: string;
   progress: number;
 }
 
 const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
-  ({ title, heroTitle, description, moreModels, annotations, progress }, ref) => {
+  ({ title, heroTitle, description, moreModels, annotations, advantages, advantagesLearnMore, progress }, ref) => {
     const [activeAnnotation, setActiveAnnotation] = useState<string | null>(
       annotations.length > 0 ? annotations[0].id : null,
     );
@@ -50,9 +54,6 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
     const currentIndex = annotations.findIndex(
       (a) => a.id === activeAnnotation,
     );
-    const activeAnnotationData = annotations.find(
-      (a) => a.id === activeAnnotation,
-    );
 
     return (
       <div
@@ -67,7 +68,6 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
             heroTitle={heroTitle}
             description={description}
             moreModels={moreModels}
-            activeAnnotationData={activeAnnotationData}
           />
 
           <div className={styles.modelWrapper}>
@@ -97,6 +97,8 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
             </div>
           </div>
         </div>
+
+        <Advantages items={advantages} learnMore={advantagesLearnMore} />
       </div>
     );
   },

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import ModelParent from "./ModelParent";
+import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/page.module.scss";
 
 interface Annotation {
@@ -19,6 +20,8 @@ interface ModelParentWrapperProps {
   description: string;
   moreModels: string;
   annotations: readonly Annotation[];
+  advantages: readonly AdvantageItem[];
+  advantagesLearnMore: string;
   onProgressChange: (progress: number) => void;
 }
 
@@ -28,6 +31,8 @@ export default function ModelParentWrapper({
   description,
   moreModels,
   annotations,
+  advantages,
+  advantagesLearnMore,
   onProgressChange,
 }: ModelParentWrapperProps) {
   const [progress, setProgress] = useState(0);
@@ -197,6 +202,8 @@ export default function ModelParentWrapper({
         description={description}
         moreModels={moreModels}
         annotations={annotations}
+        advantages={advantages}
+        advantagesLearnMore={advantagesLearnMore}
         progress={progress}
       />
     </div>

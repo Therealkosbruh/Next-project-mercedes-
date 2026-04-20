@@ -89,6 +89,29 @@ const de = {
       },
     ],
   },
+  advantages: {
+    learnMore: "Mehr erfahren",
+    items: [
+      {
+        category: "Fahrzeuge",
+        title: "Der neue GLE. Kraft trifft Eleganz.",
+        href: "#",
+        image: "/images/advantages/gle.png",
+      },
+      {
+        category: "Luxus",
+        title: "Maybach. Der Gipfel der Vollkommenheit.",
+        href: "#",
+        image: "/images/advantages/mayback.png",
+      },
+      {
+        category: "Flaggschiff",
+        title: "Die S-Klasse. Das Beste oder nichts.",
+        href: "#",
+        image: "/images/advantages/s-class.png",
+      },
+    ],
+  },
 } as const;
 
 export default de;

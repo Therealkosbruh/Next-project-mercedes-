@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, Suspense, useEffect } from "react";
+import { useRef, Suspense, useEffect, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import {
   useGLTF,
@@ -10,6 +10,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import annotationStyles from "@/styles/components/annotation.module.scss";
+import parentStyles from "@/styles/components/model-parent.module.scss";
 
 interface Annotation {
   readonly id: string;
@@ -24,6 +25,7 @@ interface ModelProps {
   activeAnnotation: string | null;
   onAnnotationClick: (id: string) => void;
   annotations: readonly Annotation[];
+  onLoaded?: () => void;
 }
 
 function AnnotationMarker({
@@ -92,20 +94,30 @@ function Model({
   activeAnnotation,
   onAnnotationClick,
   annotations,
+  onLoaded,
 }: ModelProps) {
   const { scene } = useGLTF("/models/g63/source/g-wagon.glb");
   const modelRef = useRef<THREE.Group>(null);
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+  const minDist = size.width < 600 ? 13 : 10;
+  const modelCenter = new THREE.Vector3(0, 0.5, 0);
+
+  useEffect(() => {
+    onLoaded?.();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (activeAnnotation && modelRef.current) {
       const annotation = annotations.find((a) => a.id === activeAnnotation);
       if (annotation) {
         const [x, y, z] = annotation.position;
-        const targetPosition = annotation.cameraPosition
+        const raw = annotation.cameraPosition
           ? new THREE.Vector3(...annotation.cameraPosition)
           : new THREE.Vector3(x + 2, y + 1, z + 2);
 
+        const targetPosition = raw.length() < minDist
+          ? raw.clone().normalize().multiplyScalar(minDist)
+          : raw.clone();
         const startPosition = camera.position.clone();
         const duration = 1000;
         const startTime = Date.now();
@@ -113,9 +125,10 @@ function Model({
         const animate = () => {
           const elapsed = Date.now() - startTime;
           const progress = Math.min(elapsed / duration, 1);
+          const t = 1 - Math.pow(1 - progress, 3);
 
-          camera.position.lerpVectors(startPosition, targetPosition, progress);
-          camera.lookAt(x, y, z);
+          camera.position.lerpVectors(startPosition, targetPosition, t);
+          camera.lookAt(modelCenter);
 
           if (progress < 1) {
             requestAnimationFrame(animate);
@@ -143,15 +156,6 @@ function Model({
   );
 }
 
-function Loader() {
-  return (
-    <mesh>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="white" wireframe />
-    </mesh>
-  );
-}
-
 interface ModelComponentProps {
   activeAnnotation: string | null;
   onAnnotationClick: (id: string) => void;
@@ -163,30 +167,41 @@ export default function ModelComponent({
   onAnnotationClick,
   annotations,
 }: ModelComponentProps) {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <Canvas style={{ width: "100%", height: "100%" }} gl={{ antialias: true }}>
-      <PerspectiveCamera makeDefault position={[8, 3, 8]} fov={45} />
+    <div className={parentStyles.modelCanvasWrap}>
+      {loading && (
+        <div className={parentStyles.modelLoader}>
+          <span className={parentStyles.modelLoaderRing} />
+          <span className={parentStyles.modelLoaderLabel}>Loading</span>
+        </div>
+      )}
+      <Canvas style={{ width: "100%", height: "100%" }} gl={{ antialias: true }}>
+        <PerspectiveCamera makeDefault position={[8, 3, 8]} fov={50} />
 
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
-      <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-      <spotLight
-        position={[0, 10, 0]}
-        angle={0.3}
-        penumbra={1}
-        intensity={0.8}
-      />
-
-      <Suspense fallback={<Loader />}>
-        <Model
-          activeAnnotation={activeAnnotation}
-          onAnnotationClick={onAnnotationClick}
-          annotations={annotations}
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
+        <directionalLight position={[-10, -10, -5]} intensity={0.5} />
+        <spotLight
+          position={[0, 10, 0]}
+          angle={0.3}
+          penumbra={1}
+          intensity={0.8}
         />
-      </Suspense>
 
-      <Environment preset="sunset" />
-    </Canvas>
+        <Suspense fallback={null}>
+          <Model
+            activeAnnotation={activeAnnotation}
+            onAnnotationClick={onAnnotationClick}
+            annotations={annotations}
+            onLoaded={() => setLoading(false)}
+          />
+        </Suspense>
+
+        <Environment preset="sunset" />
+      </Canvas>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Intro from "./Intro";
 import ModelParentWrapper from "./ModelParentWrapper";
+import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/page.module.scss";
 
 interface Annotation {
@@ -22,6 +23,8 @@ interface PageContentProps {
   modelDescription: string;
   moreModels: string;
   annotations: readonly Annotation[];
+  advantages: readonly AdvantageItem[];
+  advantagesLearnMore: string;
 }
 
 export default function PageContent({
@@ -32,13 +35,15 @@ export default function PageContent({
   modelDescription,
   moreModels,
   annotations,
+  advantages,
+  advantagesLearnMore,
 }: PageContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const introOpacity = Math.max(0, 1 - (scrollProgress - 0.2) / 0.5);
   const introScale = 1 - scrollProgress * 0.05;
 
   return (
-    <div className={styles.pageWrapper}>
+    <main className={styles.pageWrapper}>
       <div
         className={styles.section}
         style={{
@@ -56,8 +61,10 @@ export default function PageContent({
         description={modelDescription}
         moreModels={moreModels}
         annotations={annotations}
+        advantages={advantages}
+        advantagesLearnMore={advantagesLearnMore}
         onProgressChange={setScrollProgress}
       />
-    </div>
+    </main>
   );
 }

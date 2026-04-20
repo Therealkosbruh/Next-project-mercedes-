@@ -89,6 +89,29 @@ const en = {
       },
     ],
   },
+  advantages: {
+    learnMore: "Learn more",
+    items: [
+      {
+        category: "Vehicles",
+        title: "The new GLE. Power meets elegance.",
+        href: "#",
+        image: "/images/advantages/gle.png",
+      },
+      {
+        category: "Luxury",
+        title: "Maybach. The pinnacle of refinement.",
+        href: "#",
+        image: "/images/advantages/mayback.png",
+      },
+      {
+        category: "Flagship",
+        title: "The S-Class. The best or nothing.",
+        href: "#",
+        image: "/images/advantages/s-class.png",
+      },
+    ],
+  },
 } as const;
 
 export default en;
