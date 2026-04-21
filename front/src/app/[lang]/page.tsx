@@ -34,6 +34,8 @@ export default async function Home({ params }: HomeProps) {
       annotations={dict.g63.annotations}
       advantages={dict.advantages.items}
       advantagesLearnMore={dict.advantages.learnMore}
+      faqTitle={dict.faq.title}
+      faqItems={dict.faq.items}
     />
   );
 }

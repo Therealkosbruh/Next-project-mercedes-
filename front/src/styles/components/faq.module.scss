@@ -1,0 +1,176 @@
+@keyframes silverShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.section {
+  padding: 40px 20px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: clamp(24px, 2.5vw, 38px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0 0 52px 0;
+
+  // Silver shimmer effect
+  background: linear-gradient(
+    90deg,
+    #666 0%,
+    #aaa 20%,
+    #e8e8e8 40%,
+    #fff 50%,
+    #e8e8e8 60%,
+    #aaa 80%,
+    #666 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: silverShimmer 6s linear infinite;
+}
+
+// ── List ─────────────────────────────────────────────────────────
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  border-bottom: 1px solid rgba(192, 192, 192, 0.12);
+
+  &:first-child {
+    border-top: 1px solid rgba(192, 192, 192, 0.12);
+  }
+
+  // Silver left accent that grows in when open
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(192, 192, 192, 0.7) 30%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(192, 192, 192, 0.7) 70%,
+      transparent 100%
+    );
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.open::before {
+    transform: scaleY(1);
+  }
+}
+
+// ── Question button ───────────────────────────────────────────────
+
+.questionBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0 26px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: #fff;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.questionText {
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+// CSS chevron icon — animates on open
+.icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 1.5px;
+    background: rgba(192, 192, 192, 0.75);
+    top: 50%;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      background 0.25s ease;
+  }
+
+  &::before {
+    right: calc(50% - 1px);
+    transform: translateY(-50%) rotate(-45deg);
+    transform-origin: right center;
+  }
+
+  &::after {
+    left: calc(50% - 1px);
+    transform: translateY(-50%) rotate(45deg);
+    transform-origin: left center;
+  }
+
+  .open & {
+    &::before {
+      transform: translateY(-50%) rotate(45deg);
+      background: rgba(220, 220, 220, 0.95);
+    }
+
+    &::after {
+      transform: translateY(-50%) rotate(-45deg);
+      background: rgba(220, 220, 220, 0.95);
+    }
+  }
+}
+
+// ── Answer — CSS grid trick for smooth height animation ───────────
+
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  padding: 0;
+}
+
+.item.open .answerWrap {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.answerText {
+  padding: 0 24px 28px 20px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 680px;
+}

@@ -22,6 +22,8 @@ interface ModelParentWrapperProps {
   annotations: readonly Annotation[];
   advantages: readonly AdvantageItem[];
   advantagesLearnMore: string;
+  faqTitle: string;
+  faqItems: readonly { question: string; answer: string }[];
   onProgressChange: (progress: number) => void;
 }
 
@@ -33,6 +35,8 @@ export default function ModelParentWrapper({
   annotations,
   advantages,
   advantagesLearnMore,
+  faqTitle,
+  faqItems,
   onProgressChange,
 }: ModelParentWrapperProps) {
   const [progress, setProgress] = useState(0);
@@ -204,6 +208,8 @@ export default function ModelParentWrapper({
         annotations={annotations}
         advantages={advantages}
         advantagesLearnMore={advantagesLearnMore}
+        faqTitle={faqTitle}
+        faqItems={faqItems}
         progress={progress}
       />
     </div>

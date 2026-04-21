@@ -89,6 +89,36 @@ const en = {
       },
     ],
   },
+  faq: {
+    title: "Questions & Answers",
+    items: [
+      {
+        question: "How do I get in touch about placing an order?",
+        answer:
+          "Fill in the contact form on the page of the model you are interested in. Our sales consultant will reach out within 24 hours to walk you through every detail of your configuration.",
+      },
+      {
+        question: "What warranty coverage does a BRABUS vehicle come with?",
+        answer:
+          "Every BRABUS vehicle is backed by a 2-year manufacturer warranty. Extended coverage programmes are available through your authorised Mercedes-Benz dealer.",
+      },
+      {
+        question: "Is a test drive available?",
+        answer:
+          "Yes. Contact your nearest authorised dealer or request an appointment directly through the vehicle detail page. We will arrange a drive at a time convenient for you.",
+      },
+      {
+        question: "How long does delivery take?",
+        answer:
+          "Lead times vary by model and configuration — typically between 4 and 12 weeks. Your sales consultant will provide a precise estimate once your order is confirmed.",
+      },
+      {
+        question: "What payment and financing options are available?",
+        answer:
+          "We accept bank transfer as well as manufacturer-backed financing and leasing programmes with competitive rates. Speak with a consultant for a personalised quote.",
+      },
+    ],
+  },
   advantages: {
     learnMore: "Learn more",
     items: [

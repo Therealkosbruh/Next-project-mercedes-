@@ -89,6 +89,36 @@ const de = {
       },
     ],
   },
+  faq: {
+    title: "Fragen & Antworten",
+    items: [
+      {
+        question: "Wie nehme ich wegen einer Bestellung Kontakt auf?",
+        answer:
+          "Füllen Sie das Kontaktformular auf der Seite des gewünschten Modells aus. Unser Vertriebsberater meldet sich innerhalb von 24 Stunden, um alle Details Ihrer Konfiguration zu besprechen.",
+      },
+      {
+        question: "Welche Garantie gibt es auf ein BRABUS-Fahrzeug?",
+        answer:
+          "Jedes BRABUS-Fahrzeug wird mit einer 2-jährigen Herstellergarantie geliefert. Erweiterte Garantieprogramme sind über Ihren autorisierten Mercedes-Benz Händler erhältlich.",
+      },
+      {
+        question: "Ist eine Probefahrt möglich?",
+        answer:
+          "Ja. Kontaktieren Sie Ihren nächsten autorisierten Händler oder vereinbaren Sie einen Termin direkt über die Fahrzeugdetailseite. Wir arrangieren eine Fahrt zu einem für Sie passenden Zeitpunkt.",
+      },
+      {
+        question: "Wie lange dauert die Lieferung?",
+        answer:
+          "Die Lieferzeiten variieren je nach Modell und Konfiguration — in der Regel zwischen 4 und 12 Wochen. Nach Auftragsbestätigung erhalten Sie eine genaue Schätzung von Ihrem Berater.",
+      },
+      {
+        question: "Welche Zahlungs- und Finanzierungsmöglichkeiten gibt es?",
+        answer:
+          "Wir akzeptieren Banküberweisung sowie herstellergestützte Finanzierungs- und Leasingprogramme zu attraktiven Konditionen. Sprechen Sie mit einem Berater für ein individuelles Angebot.",
+      },
+    ],
+  },
   advantages: {
     learnMore: "Mehr erfahren",
     items: [

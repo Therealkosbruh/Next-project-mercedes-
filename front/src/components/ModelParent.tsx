@@ -4,6 +4,8 @@ import { useState, forwardRef } from "react";
 import ModelComponent from "./ModelComponent";
 import TextContent from "./TextContent";
 import Advantages from "./Advantages";
+import Faq from "./Faq";
+import Footer from "./Footer";
 import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/components/model-parent.module.scss";
 
@@ -24,11 +26,13 @@ interface ModelParentProps {
   annotations: readonly Annotation[];
   advantages: readonly AdvantageItem[];
   advantagesLearnMore: string;
+  faqTitle: string;
+  faqItems: readonly { question: string; answer: string }[];
   progress: number;
 }
 
 const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
-  ({ title, heroTitle, description, moreModels, annotations, advantages, advantagesLearnMore, progress }, ref) => {
+  ({ heroTitle, description, moreModels, annotations, advantages, advantagesLearnMore, faqTitle, faqItems, progress }, ref) => {
     const [activeAnnotation, setActiveAnnotation] = useState<string | null>(
       annotations.length > 0 ? annotations[0].id : null,
     );
@@ -99,6 +103,8 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
         </div>
 
         <Advantages items={advantages} learnMore={advantagesLearnMore} />
+        <Faq title={faqTitle} items={faqItems} />
+        <Footer />
       </div>
     );
   },

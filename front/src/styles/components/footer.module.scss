@@ -1,0 +1,26 @@
+.footer {
+  border-top: 1px solid rgba(192, 192, 192, 0.1);
+  padding: 28px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.link {
+  color: rgba(192, 192, 192, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba(220, 220, 220, 0.9);
+  }
+}

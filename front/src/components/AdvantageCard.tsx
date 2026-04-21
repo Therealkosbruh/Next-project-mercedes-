@@ -44,16 +44,17 @@ export default function AdvantageCard({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.intersectionRatio >= 0.1) {
           el.style.transitionDelay = `${index * 0.12}s`;
           el.classList.add(styles.visible);
-        } else {
-          // Reset delay so the exit animation is instant
+        } else if (entry.intersectionRatio === 0) {
+          // Only hide when fully out of view — prevents flicker at the boundary
           el.style.transitionDelay = "0s";
           el.classList.remove(styles.visible);
         }
+        // 0..0.1 range: hysteresis zone, do nothing
       },
-      { root, threshold: 0.1 },
+      { root, threshold: [0, 0.1] },
     );
 
     observer.observe(el);

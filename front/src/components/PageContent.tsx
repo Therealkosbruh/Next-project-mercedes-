@@ -25,6 +25,8 @@ interface PageContentProps {
   annotations: readonly Annotation[];
   advantages: readonly AdvantageItem[];
   advantagesLearnMore: string;
+  faqTitle: string;
+  faqItems: readonly { question: string; answer: string }[];
 }
 
 export default function PageContent({
@@ -37,6 +39,8 @@ export default function PageContent({
   annotations,
   advantages,
   advantagesLearnMore,
+  faqTitle,
+  faqItems,
 }: PageContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const introOpacity = Math.max(0, 1 - (scrollProgress - 0.2) / 0.5);
@@ -63,6 +67,8 @@ export default function PageContent({
         annotations={annotations}
         advantages={advantages}
         advantagesLearnMore={advantagesLearnMore}
+        faqTitle={faqTitle}
+        faqItems={faqItems}
         onProgressChange={setScrollProgress}
       />
     </main>
