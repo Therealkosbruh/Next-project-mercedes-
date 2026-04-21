@@ -1,32 +1,40 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Car } from './car.entity';
+import { CarsRepository } from './cars.repository';
+import { CarDetailDto } from './dto/car-detail.dto';
+import { CarListItemDto } from './dto/car-list-item.dto';
+import { CarsPageDto } from './dto/cars-page.dto';
+
+const PAGE_SIZE = 9;
 
 @Injectable()
 export class CarsService {
-  constructor(
-    @InjectRepository(Car)
-    private readonly repo: Repository<Car>,
-  ) {}
+  constructor(private readonly repo: CarsRepository) {}
 
-  findAll(): Promise<Car[]> {
-    return this.repo.find({ relations: ['modelType', 'colors'] });
+  async getPage(afterId = 0): Promise<CarsPageDto> {
+    const [rows, total] = await Promise.all([
+      this.repo.findPage(afterId, PAGE_SIZE + 1),
+      this.repo.count(),
+    ]);
+
+    const hasMore = rows.length > PAGE_SIZE;
+    const items = rows.slice(0, PAGE_SIZE).map(CarListItemDto.from);
+
+    return {
+      items,
+      hasMore,
+      nextCursor: hasMore ? items[items.length - 1].id : null,
+      total,
+    };
   }
 
-  async findOne(id: number): Promise<Car> {
-    const car = await this.repo.findOne({
-      where: { id },
-      relations: ['modelType', 'colors'],
-    });
-    if (!car) throw new NotFoundException(`Car #${id} not found`);
-    return car;
+  async getBySlug(slug: string): Promise<CarDetailDto> {
+    const car = await this.repo.findBySlug(slug);
+    if (!car) throw new NotFoundException(`Car "${slug}" not found`);
+    return CarDetailDto.from(car);
   }
 
-  findByModelType(modelTypeId: number): Promise<Car[]> {
-    return this.repo.find({
-      where: { modelTypeId },
-      relations: ['modelType', 'colors'],
-    });
+  async getByModelType(modelTypeId: number): Promise<CarListItemDto[]> {
+    const cars = await this.repo.findByModelType(modelTypeId);
+    return cars.map(CarListItemDto.from);
   }
 }

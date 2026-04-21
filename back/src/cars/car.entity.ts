@@ -14,39 +14,75 @@ import { Color } from '../colors/color.entity';
 @Entity('cars')
 export class Car {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ name: 'model_number', length: 100 })
-  modelNumber: string;
+  modelNumber!: string;
 
   @Column({ type: 'decimal', precision: 12, scale: 2 })
-  price: number;
+  price!: number;
 
   @Column({ type: 'text', nullable: true })
-  description: string | null;
+  description!: string | null;
+
+  @Column({ name: 'short_description', type: 'varchar', length: 300, nullable: true })
+  shortDescription!: string | null;
 
   @Column({ type: 'varchar', nullable: true })
-  preview: string | null;
+  preview!: string | null;
 
   @Column({ type: 'varchar', nullable: true })
-  model: string | null;
+  model!: string | null;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  slug!: string | null;
+
+  @Column({ type: 'smallint', nullable: true })
+  year!: number | null;
+
+  @Column({ name: 'body_type', type: 'varchar', length: 50, nullable: true })
+  bodyType!: string | null;
+
+  @Column({ name: 'fuel_type', type: 'varchar', length: 30, nullable: true })
+  fuelType!: string | null;
+
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  transmission!: string | null;
+
+  @Column({ name: 'engine_volume', type: 'decimal', precision: 3, scale: 1, nullable: true })
+  engineVolume!: number | null;
+
+  @Column({ name: 'power_hp', type: 'smallint', nullable: true })
+  powerHp!: number | null;
+
+  @Column({ name: 'drive_type', type: 'varchar', length: 10, nullable: true })
+  driveType!: string | null;
+
+  @Column({ name: 'is_amg', type: 'boolean', default: false })
+  isAmg!: boolean;
+
+  @Column({ name: 'is_electric', type: 'boolean', default: false })
+  isElectric!: boolean;
+
+  @Column({ type: 'smallint', nullable: true })
+  seats!: number | null;
 
   @ManyToOne(() => ModelType, (modelType) => modelType.cars, {
     nullable: false,
     eager: false,
   })
   @JoinColumn({ name: 'model_type_id' })
-  modelType: ModelType;
+  modelType!: ModelType;
 
   @Column({ name: 'model_type_id' })
-  modelTypeId: number;
+  modelTypeId!: number;
 
   @OneToMany(() => Color, (color) => color.car, { cascade: true, eager: true })
-  colors: Color[];
+  colors!: Color[];
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

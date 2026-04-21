@@ -11,21 +11,21 @@ import { Car } from '../cars/car.entity';
 @Entity('colors')
 export class Color {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ length: 100 })
-  name: string;
+  name!: string;
 
   @Column({ length: 7 })
-  hex: string;
+  hex!: string;
 
   @ManyToOne(() => Car, (car) => car.colors, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'car_id' })
-  car: Car;
+  car!: Car;
 
   @Column({ name: 'car_id' })
-  carId: number;
+  carId!: number;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  createdAt!: Date;
 }

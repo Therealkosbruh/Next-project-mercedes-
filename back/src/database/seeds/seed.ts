@@ -2,8 +2,28 @@ import { AppDataSource } from '../data-source';
 import { ModelType } from '../../model-types/model-type.entity';
 import { Car } from '../../cars/car.entity';
 import { Color } from '../../colors/color.entity';
-import { faker } from '@faker-js/faker';
-import { COLORS_PALETTE, MODEL_NUMBERS, MODEL_TYPES } from './constants';
+import { CAR_DATA, COLORS_PALETTE, MODEL_TYPES } from './constants';
+
+const COLORS_PER_CAR: Record<string, string[]> = {
+  'GLE 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
+  'GLE 63 S AMG 4MATIC+':             ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
+  'GLS 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Mojave Silver', 'Cavansite Blue'],
+  'GLS 600 Maybach':                   ['Obsidian Black', 'Polar White', 'Mojave Silver', 'Designo Manufaktur Maybach Gold'],
+  'S 500 4MATIC':                      ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Emerald Green'],
+  'S 63 AMG 4MATIC+ E Performance':    ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
+  'S 680 Maybach 4MATIC':              ['Obsidian Black', 'Polar White', 'Mojave Silver', 'Designo Manufaktur Maybach Gold'],
+  'E 300':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
+  'E 53 AMG 4MATIC+':                  ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
+  'C 300':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Brilliant Blue', 'Patagonia Red'],
+  'C 43 AMG 4MATIC':                   ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
+  'A 200':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Patagonia Red'],
+  'CLA 250 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Brilliant Blue'],
+  'CLS 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Cavansite Blue'],
+  'G 500':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Emerald Green'],
+  'G 63 AMG':                          ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red', 'Designo Manufaktur Maybach Gold'],
+  'EQS 450+':                          ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Emerald Green'],
+  'EQE 350+':                          ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
+};
 
 async function seed() {
   await AppDataSource.initialize();
@@ -23,31 +43,28 @@ async function seed() {
   );
   console.log(`Created ${savedModelTypes.length} model types`);
 
-  const cars: Car[] = [];
-  for (const modelType of savedModelTypes) {
-    const count = faker.number.int({ min: 2, max: 4 });
-    for (let i = 0; i < count; i++) {
-      const year = faker.number.int({ min: 2022, max: 2025 });
-      const car = carRepo.create({
-        modelNumber: `${faker.helpers.arrayElement(MODEL_NUMBERS[modelType.name])} ${year}`,
-        price: Number(faker.commerce.price({ min: 60000, max: 350000, dec: 2 })),
-        description: faker.lorem.sentences(2),
-        preview: `/images/cars/${modelType.name.toLowerCase().replace(/\s/g, '-')}-preview.jpg`,
-        model: `/models/${modelType.name.toLowerCase().replace(/\s/g, '-')}.glb`,
-        modelTypeId: modelType.id,
-      });
-      cars.push(car);
-    }
-  }
-  const savedCars = await carRepo.save(cars);
+  const modelTypeMap = new Map(savedModelTypes.map((mt) => [mt.name, mt.id]));
+  const colorMap = new Map<string, string>(COLORS_PALETTE.map((c) => [c.name, c.hex]));
+
+  const carsToSave = CAR_DATA.map((data) => {
+    const { modelTypeName, ...fields } = data;
+    return carRepo.create({
+      ...fields,
+      modelTypeId: modelTypeMap.get(modelTypeName)!,
+    });
+  });
+
+  const savedCars = await carRepo.save(carsToSave);
   console.log(`Created ${savedCars.length} cars`);
 
   const colorsToSave: Color[] = [];
   for (const car of savedCars) {
-    const count = faker.number.int({ min: 3, max: 6 });
-    const picked = faker.helpers.arrayElements([...COLORS_PALETTE], count);
-    for (const c of picked) {
-      colorsToSave.push(colorRepo.create({ ...c, carId: car.id }));
+    const colorNames = COLORS_PER_CAR[car.modelNumber] ?? [];
+    for (const name of colorNames) {
+      const hex = colorMap.get(name);
+      if (hex) {
+        colorsToSave.push(colorRepo.create({ name, hex, carId: car.id }));
+      }
     }
   }
   await colorRepo.save(colorsToSave);
