@@ -41,8 +41,6 @@
   }
 }
 
-// Container for the animated fill text — acts purely as a layout wrapper.
-// Each child .fillWord handles its own color via background-clip: text.
 .description {
   font-size: clamp(28px, 4vw, 62px);
   font-weight: 300;
@@ -53,9 +51,6 @@
   color: transparent;
 }
 
-// Each word gets a two-stop gradient that slides left-to-right.
-// JS drives `background-position` via inline style; CSS `transition`
-// smooths the jump between frames on slower machines.
 .fillWord {
   display: inline-block;
   background-image: linear-gradient(
@@ -64,7 +59,7 @@
     rgba(255, 255, 255, 0.18) 50%
   );
   background-size: 200% 100%;
-  background-position: 100% 0; // 100% = unfilled, 0% = filled
+  background-position: 100% 0; 
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -106,7 +101,7 @@
 .moreModelsBtnIcon {
   width: 20px;
   height: 20px;
-  filter: none; // icon already dark on white bg
+  filter: none; 
   flex-shrink: 0;
 }
 

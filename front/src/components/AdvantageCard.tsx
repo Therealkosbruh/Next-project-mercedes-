@@ -2,6 +2,8 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import styles from "@/styles/components/advantages.module.scss";
 
 export interface AdvantageItem {
@@ -35,6 +37,8 @@ export default function AdvantageCard({
   learnMore,
 }: AdvantageCardProps) {
   const ref = useRef<HTMLAnchorElement>(null);
+  const { lang } = useParams<{ lang: string }>();
+  const fullHref = `/${lang}${href}`;
 
   useEffect(() => {
     const el = ref.current;
@@ -48,11 +52,9 @@ export default function AdvantageCard({
           el.style.transitionDelay = `${index * 0.12}s`;
           el.classList.add(styles.visible);
         } else if (entry.intersectionRatio === 0) {
-          // Only hide when fully out of view — prevents flicker at the boundary
           el.style.transitionDelay = "0s";
           el.classList.remove(styles.visible);
         }
-        // 0..0.1 range: hysteresis zone, do nothing
       },
       { root, threshold: [0, 0.1] },
     );
@@ -71,9 +73,9 @@ export default function AdvantageCard({
   );
 
   return (
-    <a
+    <Link
       ref={ref}
-      href={href}
+      href={fullHref}
       className={styles.card}
       onTouchStart={addTouched}
       onTouchEnd={removeTouched}
@@ -93,6 +95,6 @@ export default function AdvantageCard({
           <span className={styles.learnMoreBtn}>{learnMore}</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
