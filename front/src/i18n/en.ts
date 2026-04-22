@@ -199,6 +199,26 @@ const en = {
       showResults: "Show results",
     },
   },
+  carDetail: {
+    backToAll: "All Models",
+    from: "From",
+    requestConsultation: "Request a Consultation",
+    specsTitle: "Specifications",
+    specs: {
+      power: "Power",
+      engine: "Engine",
+      transmission: "Transmission",
+      drive: "Drive",
+      fuel: "Fuel",
+      bodyType: "Body",
+      seats: "Seats",
+      year: "Year",
+    },
+    colors: "Available in",
+    electric: "Electric Motor",
+    notFound: "Vehicle not found",
+    notFoundBody: "This model may have been removed or the URL is incorrect.",
+  },
 } as const;
 
 export default en;

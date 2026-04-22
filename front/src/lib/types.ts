@@ -15,6 +15,7 @@ export interface CarListItem {
   price: number;
   shortDescription: string | null;
   preview: string | null;
+  hoverPreview: string | null;
   year: number | null;
   bodyType: string | null;
   fuelType: string | null;
@@ -26,6 +27,13 @@ export interface CarListItem {
   seats: number | null;
   modelType: CarModelType;
   colors: CarColor[];
+}
+
+export interface CarDetail extends CarListItem {
+  description: string | null;
+  engineVolume: number | null;
+  model: string | null;
+  detailImages: string[];
 }
 
 export interface CarsPage {
@@ -49,6 +57,16 @@ export interface FilterState {
   amgOnly: boolean;
   eqOnly: boolean;
   quickChip: string;
+}
+
+export interface FullscreenModalProps {
+  images: string[];
+  alt: string;
+  current: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  onGoTo: (i: number) => void;
 }
 
 export type StringArrayFilterKey = {

@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ModelType } from '../model-types/model-type.entity';
 import { Color } from '../colors/color.entity';
+import { CarDetailImage } from './car-detail-image.entity';
 
 @Entity('cars')
 export class Car {
@@ -30,6 +31,9 @@ export class Car {
 
   @Column({ type: 'varchar', nullable: true })
   preview!: string | null;
+
+  @Column({ name: 'hover_preview', type: 'varchar', nullable: true })
+  hoverPreview!: string | null;
 
   @Column({ type: 'varchar', nullable: true })
   model!: string | null;
@@ -79,6 +83,9 @@ export class Car {
 
   @OneToMany(() => Color, (color) => color.car, { cascade: true, eager: true })
   colors!: Color[];
+
+  @OneToMany(() => CarDetailImage, (img) => img.car, { cascade: true, eager: false })
+  detailImages!: CarDetailImage[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;

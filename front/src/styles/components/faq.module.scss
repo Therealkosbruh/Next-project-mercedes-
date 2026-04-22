@@ -14,8 +14,6 @@
   font-weight: 300;
   letter-spacing: -0.02em;
   margin: 0 0 52px 0;
-
-  // Silver shimmer effect
   background: linear-gradient(
     90deg,
     #666 0%,
@@ -33,8 +31,6 @@
   animation: silverShimmer 6s linear infinite;
 }
 
-// ── List ─────────────────────────────────────────────────────────
-
 .list {
   margin: 0;
   padding: 0;
@@ -49,7 +45,6 @@
     border-top: 1px solid rgba(192, 192, 192, 0.12);
   }
 
-  // Silver left accent that grows in when open
   &::before {
     content: "";
     position: absolute;
@@ -74,8 +69,6 @@
     transform: scaleY(1);
   }
 }
-
-// ── Question button ───────────────────────────────────────────────
 
 .questionBtn {
   width: 100%;
@@ -103,7 +96,6 @@
   letter-spacing: 0.01em;
 }
 
-// CSS chevron icon — animates on open
 .icon {
   position: relative;
   width: 22px;
@@ -147,8 +139,6 @@
     }
   }
 }
-
-// ── Answer — CSS grid trick for smooth height animation ───────────
 
 .answerWrap {
   display: grid;

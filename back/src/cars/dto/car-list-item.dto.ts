@@ -17,6 +17,7 @@ export class CarListItemDto {
   price: number;
   shortDescription: string | null;
   preview: string | null;
+  hoverPreview: string | null;
   year: number | null;
   bodyType: string | null;
   fuelType: string | null;
@@ -36,6 +37,7 @@ export class CarListItemDto {
     d.price = Number(car.price);
     d.shortDescription = car.shortDescription;
     d.preview = car.preview;
+    d.hoverPreview = car.hoverPreview;
     d.year = car.year;
     d.bodyType = car.bodyType;
     d.fuelType = car.fuelType;

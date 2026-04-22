@@ -81,14 +81,25 @@ export default function CatalogCard({ car, index, priceLabel, explore, wide }: P
 
       <div className={styles.imageWrap}>
         {car.preview && !imgError ? (
-          <Image
-            src={car.preview}
-            alt={car.modelNumber}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className={styles.image}
-            onError={() => setImgError(true)}
-          />
+          <>
+            <Image
+              src={car.preview}
+              alt={car.modelNumber}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              className={styles.imageDefault}
+              onError={() => setImgError(true)}
+            />
+            {car.hoverPreview && (
+              <Image
+                src={car.hoverPreview}
+                alt={car.modelNumber}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className={styles.imageHover}
+              />
+            )}
+          </>
         ) : (
           <div className={styles.imagePlaceholder}>
             {car.modelType.name}

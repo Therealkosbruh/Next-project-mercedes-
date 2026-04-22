@@ -4,6 +4,7 @@ import { MoreThan, Repository } from 'typeorm';
 import { Car } from './car.entity';
 
 const RELATIONS = ['modelType', 'colors'] as const;
+const DETAIL_RELATIONS = ['modelType', 'colors', 'detailImages'] as const;
 
 @Injectable()
 export class CarsRepository {
@@ -22,7 +23,11 @@ export class CarsRepository {
   }
 
   findBySlug(slug: string): Promise<Car | null> {
-    return this.orm.findOne({ where: { slug }, relations: [...RELATIONS] });
+    return this.orm.findOne({
+      where: { slug },
+      relations: [...DETAIL_RELATIONS],
+      order: { detailImages: { sortOrder: 'ASC' } },
+    });
   }
 
   findByModelType(modelTypeId: number): Promise<Car[]> {

@@ -12,12 +12,25 @@ export const MODEL_TYPES = [
   { name: 'EQE',      description: 'Electric mid-size sedan — the E-Class of the EQ family.' },
 ] as const;
 
+export const PREVIEW_IMG = '/images/modelCardView/mercedes_5_side_right.png';
+export const HOVER_PREVIEW_IMG = '/images/modelCardView/mercedes_2_front_three_quarter.png';
+
+export const DETAIL_IMAGES = [
+  '/images/modelCardView/mercedes_1_side_left.png',
+  '/images/modelCardView/mercedes_2_front_three_quarter.png',
+  '/images/modelCardView/mercedes_3_front.png',
+  '/images/modelCardView/mercedes_4_rear.png',
+  '/images/modelCardView/mercedes_5_side_right.png',
+  '/images/modelCardView/mercedes_6_rear_three_quarter.png',
+];
+
 interface CarSeed {
   modelNumber: string;
   price: number;
   description: string;
   shortDescription: string;
   preview: string | null;
+  hoverPreview: string | null;
   model: string | null;
   slug: string;
   year: number;
@@ -41,7 +54,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The GLE 450 combines a silky-smooth inline-six with 48V mild-hybrid assistance for effortless power delivery. Air suspension, E-ACTIVE BODY CONTROL, and a spacious interior make every journey first-class.',
     shortDescription: 'Мощный mid-size SUV с плавной пневмоподвеской и просторным салоном',
-    preview: '/images/cars/gle-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gle.glb',
     slug: 'gle-450-4matic',
     year: 2024,
@@ -62,7 +76,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The GLE 63 S AMG is the pinnacle of performance SUV engineering — a hand-built 4.0 L biturbo V8 producing 612 hp, AMG SPEEDSHIFT MCT 9-speed transmission, and active aerodynamics that defy physics.',
     shortDescription: 'Флагманский AMG SUV с 612-сильным битурбо V8 и активной аэродинамикой',
-    preview: '/images/cars/gle-amg-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gle.glb',
     slug: 'gle-63-s-amg',
     year: 2024,
@@ -85,7 +100,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'Three rows, seven seats, and flagship technology — the GLS 450 is the S-Class of SUVs. E-ACTIVE BODY CONTROL adjusts each wheel independently for a magic-carpet ride on any surface.',
     shortDescription: '7-местный роскошный SUV с технологиями флагмана Mercedes-Benz',
-    preview: '/images/cars/gls-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gls.glb',
     slug: 'gls-450-4matic',
     year: 2024,
@@ -106,7 +122,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The GLS 600 Maybach redefines luxury travel. Hand-stitched leather, a refrigerated compartment for champagne, rear-axle steering, and a 4.0 L biturbo V8 make this the ultimate expression of Maybach excess.',
     shortDescription: 'Ультра-люксовый Maybach SUV с шампанским и 550-сильным V8',
-    preview: '/images/cars/gls-maybach-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gls.glb',
     slug: 'gls-600-maybach',
     year: 2024,
@@ -129,7 +146,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The S 500 sets the benchmark for the entire automotive industry. MBUX Hyperscreen, rear-axle steering, augmented reality navigation, and massaging seats — every detail exists to make perfection feel natural.',
     shortDescription: 'Флагманский седан с MBUX Hyperscreen и революционными технологиями',
-    preview: '/images/cars/s-class-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/s-class.glb',
     slug: 's-500-4matic',
     year: 2024,
@@ -150,7 +168,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'An 802 hp hybrid powertrain combining a hand-built 4.0 L biturbo V8 with a rear-axle electric motor. The S 63 AMG E Performance accelerates 0–100 km/h in 3.3 s while offering the comfort of an S-Class.',
     shortDescription: 'Гибридный AMG флагман с 802 л.с. и электрическим задним мостом',
-    preview: '/images/cars/s-amg-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/s-class.glb',
     slug: 's-63-amg-e-performance',
     year: 2024,
@@ -171,7 +190,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The S 680 Maybach pairs a 6.0 L V12 biturbo with an extended-wheelbase body to offer the most refined chauffeur experience on Earth. Every element — from the hand-stitched leather to the bubbly holders — is bespoke.',
     shortDescription: 'Эталон роскоши: длиннобазный Maybach с легендарным V12',
-    preview: '/images/cars/s-maybach-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/s-class.glb',
     slug: 's-680-maybach',
     year: 2024,
@@ -194,7 +214,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The all-new E 300 brings S-Class technology to the business segment. A 2.0 L turbocharged four-cylinder with 48V mild hybrid, a 12.3-inch driver display, and a 14.4-inch MBUX touchscreen define a new era of the E-Class.',
     shortDescription: 'Элегантный бизнес-седан с технологиями S-класса и мягким гибридом',
-    preview: '/images/cars/e-class-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/e-class.glb',
     slug: 'e-300',
     year: 2024,
@@ -215,7 +236,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The E 53 AMG bridges everyday luxury and AMG performance. Its electrified inline-six produces 449 hp, complemented by AMG RIDE CONTROL+ adaptive suspension, and a sport exhaust that turns heads on every street.',
     shortDescription: 'Мягкий гибрид AMG: 449 л.с. спортивного характера в деловом обличии',
-    preview: '/images/cars/e-amg-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/e-class.glb',
     slug: 'e-53-amg',
     year: 2024,
@@ -238,7 +260,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The C 300 brings flagship-level refinement to a compact package. A turbocharged 2.0 L four-cylinder with mild-hybrid assistance, a 11.9-inch portrait touchscreen, and S-Class-inspired design create a car that overdelivers.',
     shortDescription: 'Компактный седан с технологиями флагмана в доступном формате',
-    preview: '/images/cars/c-class-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/c-class.glb',
     slug: 'c-300',
     year: 2024,
@@ -259,7 +282,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The new C 43 AMG ditches the old V6 for a turbocharged 2.0 L four-cylinder making 408 hp — supplemented by an EQ Boost integrated starter-generator. The result is a compact AMG that is quicker, smarter, and greener.',
     shortDescription: 'Горячий AMG компакт с 408-сильной турбо четвёркой и полным приводом',
-    preview: '/images/cars/c-amg-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/c-class.glb',
     slug: 'c-43-amg',
     year: 2024,
@@ -282,7 +306,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The A 200 is a dynamic compact hatchback with a turbocharged 1.3 L engine and a MBUX infotainment system that learns your habits. Crisp steering, a sporty stance, and optional AMG Line make it a statement on any road.',
     shortDescription: 'Динамичный компакт-хэтчбек с MBUX и острым спортивным характером',
-    preview: '/images/cars/a-class-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/a-class.glb',
     slug: 'a-200',
     year: 2024,
@@ -305,7 +330,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The CLA 250 4MATIC fuses the sleek silhouette of a coupe with the practicality of a four-door. AWD grip, a 224 hp turbocharged engine, and an aerodynamic Cd of 0.23 make it the most aerodynamic production Mercedes ever.',
     shortDescription: 'Стремительное купе-седан с полным приводом и рекордной аэродинамикой',
-    preview: '/images/cars/cla-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/cla.glb',
     slug: 'cla-250-4matic',
     year: 2024,
@@ -328,7 +354,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The CLS 450 is the original four-door gran coupe — the car that started a genre. Its inline-six with EQ Boost delivers seamless power, while the flowing roofline and panoramic roof create an atmosphere unlike any other.',
     shortDescription: '4-дверное гран-купе: самый красивый способ добраться из А в Б',
-    preview: '/images/cars/cls-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/cls.glb',
     slug: 'cls-450-4matic',
     year: 2024,
@@ -351,7 +378,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'For over four decades the G-Class has conquered every terrain on earth. The G 500 pairs a 422 hp 4.0 L V8 with three differential locks, portal axles, and a legendary body-on-frame construction that no obstacle can stop.',
     shortDescription: 'Легендарный Geländewagen: непобедимый стиль и непобедимая проходимость',
-    preview: '/images/cars/g-class-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/g-class.glb',
     slug: 'g-500',
     year: 2024,
@@ -372,7 +400,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The G 63 AMG takes the indestructible G-Class and infuses it with hand-built AMG performance. A 585 hp biturbo V8, AMG SPEEDSHIFT TCT 9G transmission, and three differential locks deliver an experience that is completely unique.',
     shortDescription: 'AMG-версия иконы: 585 л.с. и три дифференциальных блокировки',
-    preview: '/images/cars/g-amg-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/g-class.glb',
     slug: 'g-63-amg',
     year: 2024,
@@ -395,7 +424,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The EQS 450+ is Mercedes-Benz\'s first purpose-built electric flagship. A rear-mounted motor producing 333 hp, a 107.8 kWh battery, and a WLTP range of up to 770 km set a new electric benchmark — complemented by MBUX Hyperscreen.',
     shortDescription: 'Первый электрический флагман Mercedes с запасом хода до 770 км',
-    preview: '/images/cars/eqs-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/eqs.glb',
     slug: 'eqs-450',
     year: 2024,
@@ -418,7 +448,8 @@ export const CAR_DATA: CarSeed[] = [
     description:
       'The EQE 350+ brings the silence and efficiency of pure electric driving to the business segment. Its 292 hp rear motor and 90.6 kWh battery deliver up to 660 km of WLTP range — with the refined interior you expect from an E-Class.',
     shortDescription: 'Электрический E-класс: бесшумная роскошь и 660 км без зарядки',
-    preview: '/images/cars/eqe-preview.jpg',
+    preview: PREVIEW_IMG,
+    hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/eqe.glb',
     slug: 'eqe-350',
     year: 2024,

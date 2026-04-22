@@ -43,7 +43,13 @@
       0 24px 48px -20px rgba(0, 0, 0, 0.8),
       0 0 0 1px rgba(255, 255, 255, 0.04) inset;
 
-    .image {
+    .imageDefault {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    .imageHover {
+      opacity: 1;
       transform: scale(1.04);
     }
 
@@ -68,7 +74,13 @@
     0 24px 48px -20px rgba(0, 0, 0, 0.8),
     0 0 0 1px rgba(255, 255, 255, 0.04) inset;
 
-  .image {
+  .imageDefault {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  .imageHover {
+    opacity: 1;
     transform: scale(1.04);
   }
 
@@ -128,16 +140,23 @@
 
 .imageWrap {
   aspect-ratio: 16 / 9;
-  margin: 4px -4px 20px;
+  margin: 4px 0 20px;
   overflow: hidden;
   border-radius: 10px;
   position: relative;
   background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
 }
 
-.image {
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+.imageDefault,
+.imageHover {
+  object-fit: contain;
+  transition:
+    opacity 0.45s ease,
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.imageHover {
+  opacity: 0;
 }
 
 .imagePlaceholder {

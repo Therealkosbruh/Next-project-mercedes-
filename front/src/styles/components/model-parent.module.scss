@@ -55,7 +55,6 @@
   @media (max-width: 968px) {
     order: 2;
     height: auto;
-    // Square canvas — fills the available width so the car is never clipped
     aspect-ratio: 1 / 1;
   }
 }

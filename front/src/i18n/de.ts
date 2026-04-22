@@ -199,6 +199,26 @@ const de = {
       showResults: "Ergebnisse zeigen",
     },
   },
+  carDetail: {
+    backToAll: "Alle Modelle",
+    from: "Ab",
+    requestConsultation: "Beratung anfragen",
+    specsTitle: "Technische Daten",
+    specs: {
+      power: "Leistung",
+      engine: "Motor",
+      transmission: "Getriebe",
+      drive: "Antrieb",
+      fuel: "Kraftstoff",
+      bodyType: "Karosserie",
+      seats: "Sitze",
+      year: "Baujahr",
+    },
+    colors: "Erhältlich in",
+    electric: "Elektromotor",
+    notFound: "Fahrzeug nicht gefunden",
+    notFoundBody: "Dieses Modell wurde möglicherweise entfernt oder die URL ist falsch.",
+  },
 } as const;
 
 export default de;

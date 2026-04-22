@@ -2,7 +2,8 @@ import { AppDataSource } from '../data-source';
 import { ModelType } from '../../model-types/model-type.entity';
 import { Car } from '../../cars/car.entity';
 import { Color } from '../../colors/color.entity';
-import { CAR_DATA, COLORS_PALETTE, MODEL_TYPES } from './constants';
+import { CarDetailImage } from '../../cars/car-detail-image.entity';
+import { CAR_DATA, COLORS_PALETTE, MODEL_TYPES, DETAIL_IMAGES } from './constants';
 
 const COLORS_PER_CAR: Record<string, string[]> = {
   'GLE 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
@@ -32,9 +33,10 @@ async function seed() {
   const modelTypeRepo = AppDataSource.getRepository(ModelType);
   const carRepo = AppDataSource.getRepository(Car);
   const colorRepo = AppDataSource.getRepository(Color);
+  const detailImageRepo = AppDataSource.getRepository(CarDetailImage);
 
   await AppDataSource.query(
-    'TRUNCATE TABLE colors, cars, model_types RESTART IDENTITY CASCADE',
+    'TRUNCATE TABLE car_detail_images, colors, cars, model_types RESTART IDENTITY CASCADE',
   );
   console.log('Cleared existing data');
 
@@ -69,6 +71,17 @@ async function seed() {
   }
   await colorRepo.save(colorsToSave);
   console.log(`Created ${colorsToSave.length} colors`);
+
+  const detailImagesToSave: CarDetailImage[] = [];
+  for (const car of savedCars) {
+    DETAIL_IMAGES.forEach((url, index) => {
+      detailImagesToSave.push(
+        detailImageRepo.create({ url, sortOrder: index, carId: car.id }),
+      );
+    });
+  }
+  await detailImageRepo.save(detailImagesToSave);
+  console.log(`Created ${detailImagesToSave.length} detail images`);
 
   await AppDataSource.destroy();
   console.log('Seed complete!');
