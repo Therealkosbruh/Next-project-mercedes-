@@ -5,6 +5,7 @@ import ModelComponent from "./ModelComponent";
 import TextContent from "./TextContent";
 import Advantages from "./Advantages";
 import Faq from "./Faq";
+import Footer from "./Footer";
 import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/components/model-parent.module.scss";
 
@@ -116,6 +117,7 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
 
         <Advantages items={advantages} learnMore={advantagesLearnMore} />
         <Faq title={faqTitle} items={faqItems} />
+        <Footer />
       </div>
     );
   },
