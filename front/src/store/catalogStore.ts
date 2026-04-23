@@ -1,5 +1,11 @@
 import { create } from "zustand";
-import type { FilterState, SortKey, ViewMode, StringArrayFilterKey, BooleanFilterKey } from "@/lib/types";
+import type {
+  FilterState,
+  SortKey,
+  ViewMode,
+  StringArrayFilterKey,
+  BooleanFilterKey,
+} from "@/lib/types";
 
 const POWER_MIN = 0;
 const POWER_MAX = 900;
@@ -57,11 +63,17 @@ export const useCatalogStore = create<CatalogStore>((set) => ({
       },
     })),
   toggleStringFilter: (key, val) =>
-    set((s) => ({ filters: { ...s.filters, [key]: toggle(s.filters[key] as string[], val) } })),
+    set((s) => ({
+      filters: { ...s.filters, [key]: toggle(s.filters[key] as string[], val) },
+    })),
   toggleSeat: (val) =>
-    set((s) => ({ filters: { ...s.filters, seats: toggle(s.filters.seats, val) } })),
-  setPowerRange: (range) => set((s) => ({ filters: { ...s.filters, powerRange: range } })),
-  setFlag: (key, val) => set((s) => ({ filters: { ...s.filters, [key]: val } })),
+    set((s) => ({
+      filters: { ...s.filters, seats: toggle(s.filters.seats, val) },
+    })),
+  setPowerRange: (range) =>
+    set((s) => ({ filters: { ...s.filters, powerRange: range } })),
+  setFlag: (key, val) =>
+    set((s) => ({ filters: { ...s.filters, [key]: val } })),
   setSort: (sort) => set({ sort }),
   setView: (view) => set({ view }),
   setSortOpen: (sortOpen) => set({ sortOpen }),

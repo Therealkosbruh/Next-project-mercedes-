@@ -33,7 +33,9 @@ const FullscreenModal = memo(function FullscreenModal({
   return createPortal(
     <div
       className={styles.modalOverlay}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
@@ -55,7 +57,11 @@ const FullscreenModal = memo(function FullscreenModal({
         </div>
       </div>
 
-      <button className={styles.modalClose} onClick={onClose} aria-label="Close">
+      <button
+        className={styles.modalClose}
+        onClick={onClose}
+        aria-label="Close"
+      >
         <CloseIcon size={18} />
       </button>
 

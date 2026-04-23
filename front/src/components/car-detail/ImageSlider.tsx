@@ -18,24 +18,36 @@ export default function ImageSlider({ images, alt }: Props) {
   const [mounted, setMounted] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const prev = useCallback(() =>
-    setCurrent((c) => (c === 0 ? images.length - 1 : c - 1)),
-  [images.length]);
+  const prev = useCallback(
+    () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1)),
+    [images.length],
+  );
 
-  const next = useCallback(() =>
-    setCurrent((c) => (c === images.length - 1 ? 0 : c + 1)),
-  [images.length]);
+  const next = useCallback(
+    () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1)),
+    [images.length],
+  );
 
-  const openFullscreen  = useCallback(() => setIsFullscreen(true),  []);
+  const openFullscreen = useCallback(() => setIsFullscreen(true), []);
   const closeFullscreen = useCallback(() => setIsFullscreen(false), []);
 
   useEffect(() => {
     const KEY_HANDLERS: Record<string, (e: KeyboardEvent) => void> = {
-      ArrowLeft:  (e) => { e.preventDefault(); prev(); },
-      ArrowRight: (e) => { e.preventDefault(); next(); },
-      Escape:     ()  => { if (isFullscreen) closeFullscreen(); },
+      ArrowLeft: (e) => {
+        e.preventDefault();
+        prev();
+      },
+      ArrowRight: (e) => {
+        e.preventDefault();
+        next();
+      },
+      Escape: () => {
+        if (isFullscreen) closeFullscreen();
+      },
     };
 
     const handler = (e: KeyboardEvent) => KEY_HANDLERS[e.key]?.(e);

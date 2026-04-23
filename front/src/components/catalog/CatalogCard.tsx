@@ -23,7 +23,13 @@ function getBadge(car: CarListItem) {
   return null;
 }
 
-export default function CatalogCard({ car, index, priceLabel, explore, wide }: Props) {
+export default function CatalogCard({
+  car,
+  index,
+  priceLabel,
+  explore,
+  wide,
+}: Props) {
   const [imgError, setImgError] = useState(false);
   const { lang } = useParams<{ lang: string }>();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -40,18 +46,27 @@ export default function CatalogCard({ car, index, priceLabel, explore, wide }: P
           observer.disconnect();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, [index]);
 
-  const addTouched = useCallback(() => ref.current?.classList.add(styles.cardTouched), []);
-  const removeTouched = useCallback(() => ref.current?.classList.remove(styles.cardTouched), []);
+  const addTouched = useCallback(
+    () => ref.current?.classList.add(styles.cardTouched),
+    [],
+  );
+  const removeTouched = useCallback(
+    () => ref.current?.classList.remove(styles.cardTouched),
+    [],
+  );
 
   const specs = [
     { lbl: "Fuel", val: car.fuelType },
-    { lbl: "Trans", val: car.transmission === "Automatic" ? "Auto" : car.transmission },
+    {
+      lbl: "Trans",
+      val: car.transmission === "Automatic" ? "Auto" : car.transmission,
+    },
     { lbl: "Drive", val: car.driveType },
     { lbl: "Power", val: car.powerHp ? `${car.powerHp} HP` : null },
     { lbl: "Seats", val: car.seats },
@@ -101,9 +116,7 @@ export default function CatalogCard({ car, index, priceLabel, explore, wide }: P
             )}
           </>
         ) : (
-          <div className={styles.imagePlaceholder}>
-            {car.modelType.name}
-          </div>
+          <div className={styles.imagePlaceholder}>{car.modelType.name}</div>
         )}
       </div>
 

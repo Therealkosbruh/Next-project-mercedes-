@@ -48,7 +48,10 @@ function FillWords({ text }: { text: string }) {
 
       const start = viewHeight * 0.85;
       const end = viewHeight * 0.15;
-      const progress = Math.max(0, Math.min(1, (start - offsetTop) / (start - end)));
+      const progress = Math.max(
+        0,
+        Math.min(1, (start - offsetTop) / (start - end)),
+      );
 
       wordEls.forEach((word, i) => {
         const local = Math.max(
@@ -76,11 +79,14 @@ function FillWords({ text }: { text: string }) {
 
   return (
     <p ref={ref} className={styles.description}>
-      {text.trim().split(/\s+/).map((word, i) => (
-        <span key={i} className={styles.fillWord}>
-          {word}
-        </span>
-      ))}
+      {text
+        .trim()
+        .split(/\s+/)
+        .map((word, i) => (
+          <span key={i} className={styles.fillWord}>
+            {word}
+          </span>
+        ))}
     </p>
   );
 }
@@ -109,7 +115,6 @@ export default function TextContent({
           {moreModels}
         </button>
       </div>
-
     </div>
   );
 }

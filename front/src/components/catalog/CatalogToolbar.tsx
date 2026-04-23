@@ -18,7 +18,11 @@ interface Props {
   dict: ToolbarDict;
 }
 
-export default function CatalogToolbar({ filteredCount, totalCount, dict }: Props) {
+export default function CatalogToolbar({
+  filteredCount,
+  totalCount,
+  dict,
+}: Props) {
   const sort = useCatalogStore((s) => s.sort);
   const sortOpen = useCatalogStore((s) => s.sortOpen);
   const { setSort, setSortOpen } = useCatalogStore();
@@ -35,13 +39,14 @@ export default function CatalogToolbar({ filteredCount, totalCount, dict }: Prop
     return () => document.removeEventListener("mousedown", handler);
   }, [sortOpen, setSortOpen]);
 
-  const activeSortLabel = SORT_OPTIONS.find((s) => s.id === sort)?.labelKey ?? "featured";
+  const activeSortLabel =
+    SORT_OPTIONS.find((s) => s.id === sort)?.labelKey ?? "featured";
 
   return (
     <div className={styles.toolbar}>
       <div className={styles.resultsCount}>
-        {dict.showing} <strong>{filteredCount}</strong> {dict.of}{" "}
-        {totalCount} {filteredCount === 1 ? dict.vehicle : dict.vehicles}
+        {dict.showing} <strong>{filteredCount}</strong> {dict.of} {totalCount}{" "}
+        {filteredCount === 1 ? dict.vehicle : dict.vehicles}
       </div>
       <div className={styles.toolbarRight}>
         <div className={styles.sortDropdown} ref={sortRef}>
@@ -59,7 +64,10 @@ export default function CatalogToolbar({ filteredCount, totalCount, dict }: Prop
                 <button
                   key={s.id}
                   className={s.id === sort ? styles.sortMenuActive : ""}
-                  onClick={() => { setSort(s.id); setSortOpen(false); }}
+                  onClick={() => {
+                    setSort(s.id);
+                    setSortOpen(false);
+                  }}
                 >
                   {dict.sort[s.labelKey]}
                 </button>

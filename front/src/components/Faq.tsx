@@ -16,8 +16,7 @@ interface FaqProps {
 export default function Faq({ title, items }: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggle = (i: number) =>
-    setOpenIndex((prev) => (prev === i ? null : i));
+  const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
     <section

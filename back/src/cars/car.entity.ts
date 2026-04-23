@@ -26,7 +26,12 @@ export class Car {
   @Column({ type: 'text', nullable: true })
   description!: string | null;
 
-  @Column({ name: 'short_description', type: 'varchar', length: 300, nullable: true })
+  @Column({
+    name: 'short_description',
+    type: 'varchar',
+    length: 300,
+    nullable: true,
+  })
   shortDescription!: string | null;
 
   @Column({ type: 'varchar', nullable: true })
@@ -53,7 +58,13 @@ export class Car {
   @Column({ type: 'varchar', length: 20, nullable: true })
   transmission!: string | null;
 
-  @Column({ name: 'engine_volume', type: 'decimal', precision: 3, scale: 1, nullable: true })
+  @Column({
+    name: 'engine_volume',
+    type: 'decimal',
+    precision: 3,
+    scale: 1,
+    nullable: true,
+  })
   engineVolume!: number | null;
 
   @Column({ name: 'power_hp', type: 'smallint', nullable: true })
@@ -84,7 +95,10 @@ export class Car {
   @OneToMany(() => Color, (color) => color.car, { cascade: true, eager: true })
   colors!: Color[];
 
-  @OneToMany(() => CarDetailImage, (img) => img.car, { cascade: true, eager: false })
+  @OneToMany(() => CarDetailImage, (img) => img.car, {
+    cascade: true,
+    eager: false,
+  })
   detailImages!: CarDetailImage[];
 
   @CreateDateColumn({ name: 'created_at' })

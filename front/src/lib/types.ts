@@ -43,7 +43,12 @@ export interface CarsPage {
   total: number;
 }
 
-export type SortKey = "featured" | "price-asc" | "price-desc" | "power-desc" | "az";
+export type SortKey =
+  | "featured"
+  | "price-asc"
+  | "price-desc"
+  | "power-desc"
+  | "az";
 export type ViewMode = "grid-3" | "grid-2";
 
 export interface FilterState {

@@ -32,7 +32,7 @@ export default async function CarSlugPage({ params }: Props) {
   try {
     car = await fetchCarBySlug(slug);
   } catch {
-    // 
+    //
   }
 
   if (!car) {
@@ -41,7 +41,11 @@ export default async function CarSlugPage({ params }: Props) {
         <div className={styles.notFound}>
           <h1 className={styles.notFoundTitle}>{dict.carDetail.notFound}</h1>
           <p>{dict.carDetail.notFoundBody}</p>
-          <Link href={`/${lang}/cars`} className={styles.backLink} style={{ padding: 0, marginTop: 16 }}>
+          <Link
+            href={`/${lang}/cars`}
+            className={styles.backLink}
+            style={{ padding: 0, marginTop: 16 }}
+          >
             ← {dict.carDetail.backToAll}
           </Link>
         </div>

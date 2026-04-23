@@ -11,7 +11,8 @@ export class CarDetailDto extends CarListItemDto {
   static from(car: Car): CarDetailDto {
     const d = Object.assign(new CarDetailDto(), CarListItemDto.from(car));
     d.description = car.description;
-    d.engineVolume = car.engineVolume !== null ? Number(car.engineVolume) : null;
+    d.engineVolume =
+      car.engineVolume !== null ? Number(car.engineVolume) : null;
     d.transmission = car.transmission;
     d.model = car.model;
     d.detailImages = (car.detailImages ?? [])

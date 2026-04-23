@@ -115,9 +115,10 @@ function Model({
           ? new THREE.Vector3(...annotation.cameraPosition)
           : new THREE.Vector3(x + 2, y + 1, z + 2);
 
-        const targetPosition = raw.length() < minDist
-          ? raw.clone().normalize().multiplyScalar(minDist)
-          : raw.clone();
+        const targetPosition =
+          raw.length() < minDist
+            ? raw.clone().normalize().multiplyScalar(minDist)
+            : raw.clone();
         const startPosition = camera.position.clone();
         const duration = 1000;
         const startTime = Date.now();
@@ -177,7 +178,10 @@ export default function ModelComponent({
           <span className={parentStyles.modelLoaderLabel}>Loading</span>
         </div>
       )}
-      <Canvas style={{ width: "100%", height: "100%" }} gl={{ antialias: true }}>
+      <Canvas
+        style={{ width: "100%", height: "100%" }}
+        gl={{ antialias: true }}
+      >
         <PerspectiveCamera makeDefault position={[8, 3, 8]} fov={50} />
 
         <ambientLight intensity={0.6} />

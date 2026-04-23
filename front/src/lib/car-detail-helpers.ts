@@ -21,22 +21,26 @@ export function getBadge(car: CarDetail): BadgeInfo | null {
   return null;
 }
 
-export function getCarSpecs(car: CarDetail, dict: SpecsDict, electricLabel: string): SpecItem[] {
+export function getCarSpecs(
+  car: CarDetail,
+  dict: SpecsDict,
+  electricLabel: string,
+): SpecItem[] {
   const engine = car.isElectric
     ? electricLabel
     : car.engineVolume
-    ? `${car.engineVolume}L`
-    : "—";
+      ? `${car.engineVolume}L`
+      : "—";
 
   return [
-    { label: dict.power,        value: car.powerHp ? `${car.powerHp} HP` : "—" },
-    { label: dict.engine,       value: engine },
+    { label: dict.power, value: car.powerHp ? `${car.powerHp} HP` : "—" },
+    { label: dict.engine, value: engine },
     { label: dict.transmission, value: car.transmission ?? "—" },
-    { label: dict.drive,        value: car.driveType ?? "—" },
-    { label: dict.fuel,         value: car.fuelType ?? "—" },
-    { label: dict.bodyType,     value: car.bodyType ?? "—" },
-    { label: dict.seats,        value: car.seats != null ? String(car.seats) : "—" },
-    { label: dict.year,         value: car.year != null ? String(car.year) : "—" },
+    { label: dict.drive, value: car.driveType ?? "—" },
+    { label: dict.fuel, value: car.fuelType ?? "—" },
+    { label: dict.bodyType, value: car.bodyType ?? "—" },
+    { label: dict.seats, value: car.seats != null ? String(car.seats) : "—" },
+    { label: dict.year, value: car.year != null ? String(car.year) : "—" },
   ];
 }
 

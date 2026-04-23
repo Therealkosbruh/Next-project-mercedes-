@@ -16,7 +16,8 @@ interface Props {
 
 export default function CatalogSidebar({ counts, dict }: Props) {
   const filters = useCatalogStore((s) => s.filters);
-  const { toggleStringFilter, toggleSeat, setPowerRange, setFlag, clearAll } = useCatalogStore();
+  const { toggleStringFilter, toggleSeat, setPowerRange, setFlag, clearAll } =
+    useCatalogStore();
 
   const [lo, hi] = filters.powerRange;
   const pct = (v: number) => ((v - POWER_MIN) / (POWER_MAX - POWER_MIN)) * 100;
@@ -67,8 +68,14 @@ export default function CatalogSidebar({ counts, dict }: Props) {
               className={styles.rangeFill}
               style={{ left: `${pct(lo)}%`, width: `${pct(hi) - pct(lo)}%` }}
             />
-            <div className={styles.rangeThumb} style={{ left: `${pct(lo)}%` }} />
-            <div className={styles.rangeThumb} style={{ left: `${pct(hi)}%` }} />
+            <div
+              className={styles.rangeThumb}
+              style={{ left: `${pct(lo)}%` }}
+            />
+            <div
+              className={styles.rangeThumb}
+              style={{ left: `${pct(hi)}%` }}
+            />
             <input
               type="range"
               min={POWER_MIN}

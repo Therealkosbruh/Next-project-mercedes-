@@ -35,7 +35,9 @@ export const SORT_OPTIONS: SortOption[] = [
 
 export const CHIP_COUNTS_MAP: Record<
   string,
-  (cars: { isAmg: boolean; isElectric: boolean; bodyType: string | null }[]) => number
+  (
+    cars: { isAmg: boolean; isElectric: boolean; bodyType: string | null }[],
+  ) => number
 > = {
   all: (cars) => cars.length,
   AMG: (cars) => cars.filter((c) => c.isAmg).length,

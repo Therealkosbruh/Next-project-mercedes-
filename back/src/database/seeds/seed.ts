@@ -3,27 +3,123 @@ import { ModelType } from '../../model-types/model-type.entity';
 import { Car } from '../../cars/car.entity';
 import { Color } from '../../colors/color.entity';
 import { CarDetailImage } from '../../cars/car-detail-image.entity';
-import { CAR_DATA, COLORS_PALETTE, MODEL_TYPES, DETAIL_IMAGES } from './constants';
+import {
+  CAR_DATA,
+  COLORS_PALETTE,
+  MODEL_TYPES,
+  DETAIL_IMAGES,
+} from './constants';
 
 const COLORS_PER_CAR: Record<string, string[]> = {
-  'GLE 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
-  'GLE 63 S AMG 4MATIC+':             ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
-  'GLS 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Mojave Silver', 'Cavansite Blue'],
-  'GLS 600 Maybach':                   ['Obsidian Black', 'Polar White', 'Mojave Silver', 'Designo Manufaktur Maybach Gold'],
-  'S 500 4MATIC':                      ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Emerald Green'],
-  'S 63 AMG 4MATIC+ E Performance':    ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
-  'S 680 Maybach 4MATIC':              ['Obsidian Black', 'Polar White', 'Mojave Silver', 'Designo Manufaktur Maybach Gold'],
-  'E 300':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
-  'E 53 AMG 4MATIC+':                  ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
-  'C 300':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Brilliant Blue', 'Patagonia Red'],
-  'C 43 AMG 4MATIC':                   ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red'],
-  'A 200':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Patagonia Red'],
-  'CLA 250 4MATIC':                    ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Brilliant Blue'],
-  'CLS 450 4MATIC':                    ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Cavansite Blue'],
-  'G 500':                             ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Emerald Green'],
-  'G 63 AMG':                          ['Obsidian Black', 'Polar White', 'Graphite Grey', 'Patagonia Red', 'Designo Manufaktur Maybach Gold'],
-  'EQS 450+':                          ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue', 'Emerald Green'],
-  'EQE 350+':                          ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Cavansite Blue'],
+  'GLE 450 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+  ],
+  'GLE 63 S AMG 4MATIC+': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Patagonia Red',
+  ],
+  'GLS 450 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Mojave Silver',
+    'Cavansite Blue',
+  ],
+  'GLS 600 Maybach': [
+    'Obsidian Black',
+    'Polar White',
+    'Mojave Silver',
+    'Designo Manufaktur Maybach Gold',
+  ],
+  'S 500 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+    'Emerald Green',
+  ],
+  'S 63 AMG 4MATIC+ E Performance': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Patagonia Red',
+  ],
+  'S 680 Maybach 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Mojave Silver',
+    'Designo Manufaktur Maybach Gold',
+  ],
+  'E 300': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+  ],
+  'E 53 AMG 4MATIC+': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Patagonia Red',
+  ],
+  'C 300': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Brilliant Blue',
+    'Patagonia Red',
+  ],
+  'C 43 AMG 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Patagonia Red',
+  ],
+  'A 200': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+    'Patagonia Red',
+  ],
+  'CLA 250 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Brilliant Blue',
+  ],
+  'CLS 450 4MATIC': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Cavansite Blue',
+  ],
+  'G 500': ['Obsidian Black', 'Polar White', 'Iridium Silver', 'Emerald Green'],
+  'G 63 AMG': [
+    'Obsidian Black',
+    'Polar White',
+    'Graphite Grey',
+    'Patagonia Red',
+    'Designo Manufaktur Maybach Gold',
+  ],
+  'EQS 450+': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+    'Emerald Green',
+  ],
+  'EQE 350+': [
+    'Obsidian Black',
+    'Polar White',
+    'Iridium Silver',
+    'Cavansite Blue',
+  ],
 };
 
 async function seed() {
@@ -46,7 +142,9 @@ async function seed() {
   console.log(`Created ${savedModelTypes.length} model types`);
 
   const modelTypeMap = new Map(savedModelTypes.map((mt) => [mt.name, mt.id]));
-  const colorMap = new Map<string, string>(COLORS_PALETTE.map((c) => [c.name, c.hex]));
+  const colorMap = new Map<string, string>(
+    COLORS_PALETTE.map((c) => [c.name, c.hex]),
+  );
 
   const carsToSave = CAR_DATA.map((data) => {
     const { modelTypeName, ...fields } = data;

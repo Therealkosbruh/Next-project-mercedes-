@@ -17,10 +17,14 @@ export default function QuickChips({ cars, dict }: Props) {
   const setQuickChip = useCatalogStore((s) => s.setQuickChip);
 
   const chipCounts = useMemo<Record<string, number>>(
-    () => Object.fromEntries(
-      QUICK_CHIPS.map((chip) => [chip.id, CHIP_COUNTS_MAP[chip.id]?.(cars) ?? 0])
-    ),
-    [cars]
+    () =>
+      Object.fromEntries(
+        QUICK_CHIPS.map((chip) => [
+          chip.id,
+          CHIP_COUNTS_MAP[chip.id]?.(cars) ?? 0,
+        ]),
+      ),
+    [cars],
   );
 
   return (
@@ -34,7 +38,9 @@ export default function QuickChips({ cars, dict }: Props) {
               styles.chip,
               c.cls ? styles[`chip_${c.cls}`] : "",
               active ? styles.chipActive : "",
-            ].filter(Boolean).join(" ")}
+            ]
+              .filter(Boolean)
+              .join(" ")}
             onClick={() => setQuickChip(c.id)}
           >
             {dict[c.labelKey]}

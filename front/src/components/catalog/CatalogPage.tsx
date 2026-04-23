@@ -28,7 +28,8 @@ interface Props {
 }
 
 export default function CatalogPage({ dict, initialData }: Props) {
-  const { cars, hasMore, loading, error, loadMore } = usePagination(initialData);
+  const { cars, hasMore, loading, error, loadMore } =
+    usePagination(initialData);
 
   const filters = useCatalogStore((s) => s.filters);
   const view = useCatalogStore((s) => s.view);
@@ -48,8 +49,10 @@ export default function CatalogPage({ dict, initialData }: Props) {
   useEffect(() => {
     if (!sentinelRef.current || !hasMore) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) loadMore(); },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) loadMore();
+      },
+      { threshold: 0.1 },
     );
     obs.observe(sentinelRef.current);
     return () => obs.disconnect();
@@ -59,7 +62,7 @@ export default function CatalogPage({ dict, initialData }: Props) {
 
   const filtered = useMemo(
     () => applySorting(applyFilters(cars, filters), sort),
-    [cars, filters, sort]
+    [cars, filters, sort],
   );
 
   const counts = useMemo(() => {
@@ -73,8 +76,14 @@ export default function CatalogPage({ dict, initialData }: Props) {
   }, [cars]);
 
   const appliedChips = useMemo(
-    () => buildAppliedChips(filters, { toggleStringFilter, toggleSeat, setPowerRange, setFlag }),
-    [filters, toggleStringFilter, toggleSeat, setPowerRange, setFlag]
+    () =>
+      buildAppliedChips(filters, {
+        toggleStringFilter,
+        toggleSeat,
+        setPowerRange,
+        setFlag,
+      }),
+    [filters, toggleStringFilter, toggleSeat, setPowerRange, setFlag],
   );
 
   return (
@@ -116,7 +125,9 @@ export default function CatalogPage({ dict, initialData }: Props) {
       )}
 
       <div className={styles.layout}>
-        <div className={`${styles.sidebarWrap} ${mobileFiltersOpen ? styles.sidebarOpen : ""}`}>
+        <div
+          className={`${styles.sidebarWrap} ${mobileFiltersOpen ? styles.sidebarOpen : ""}`}
+        >
           <div className={styles.mobileSidebarHeader}>
             <h3>{dict.filtersBtn}</h3>
             <button
@@ -132,7 +143,10 @@ export default function CatalogPage({ dict, initialData }: Props) {
         </div>
 
         {mobileFiltersOpen && (
-          <div className={styles.backdrop} onClick={() => setMobileFiltersOpen(false)} />
+          <div
+            className={styles.backdrop}
+            onClick={() => setMobileFiltersOpen(false)}
+          />
         )}
 
         <div>
@@ -147,7 +161,10 @@ export default function CatalogPage({ dict, initialData }: Props) {
               icon={<AlertCircleIcon size={28} />}
               title={dict.errorTitle}
               message={dict.errorBody}
-              action={{ label: dict.errorRetry, onClick: () => window.location.reload() }}
+              action={{
+                label: dict.errorRetry,
+                onClick: () => window.location.reload(),
+              }}
             />
           ) : filtered.length === 0 ? (
             <EmptyState
@@ -157,7 +174,9 @@ export default function CatalogPage({ dict, initialData }: Props) {
               action={{ label: dict.emptyReset, onClick: clearAll }}
             />
           ) : (
-            <div className={`${styles.grid} ${view === "grid-2" ? styles.grid2 : ""}`}>
+            <div
+              className={`${styles.grid} ${view === "grid-2" ? styles.grid2 : ""}`}
+            >
               {filtered.map((car, i) => (
                 <CatalogCard
                   key={car.id}

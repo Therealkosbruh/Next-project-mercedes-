@@ -9,7 +9,10 @@ const SORTERS: Partial<Record<SortKey, Comparator>> = {
   az: (a, b) => a.modelNumber.localeCompare(b.modelNumber),
 };
 
-export function applySorting(cars: CarListItem[], sort: SortKey): CarListItem[] {
+export function applySorting(
+  cars: CarListItem[],
+  sort: SortKey,
+): CarListItem[] {
   const comparator = SORTERS[sort];
   if (!comparator) return cars;
   return [...cars].sort(comparator);

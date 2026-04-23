@@ -165,7 +165,8 @@ const de = {
       "Versuchen Sie, einen Filter zu entfernen oder alles zu löschen, um die gesamte Palette zu erkunden.",
     emptyReset: "Alle Filter zurücksetzen",
     errorTitle: "Etwas ist schiefgelaufen",
-    errorBody: "Die Modellpalette konnte gerade nicht geladen werden. Bitte versuchen Sie es erneut.",
+    errorBody:
+      "Die Modellpalette konnte gerade nicht geladen werden. Bitte versuchen Sie es erneut.",
     errorRetry: "Seite neu laden",
     sort: {
       featured: "Empfohlen",
@@ -217,7 +218,44 @@ const de = {
     colors: "Erhältlich in",
     electric: "Elektromotor",
     notFound: "Fahrzeug nicht gefunden",
-    notFoundBody: "Dieses Modell wurde möglicherweise entfernt oder die URL ist falsch.",
+    notFoundBody:
+      "Dieses Modell wurde möglicherweise entfernt oder die URL ist falsch.",
+    consultation: {
+      title: "Beratung anfragen",
+      subtitle: "Unser Spezialist meldet sich innerhalb von 24 Stunden",
+      name: "Ihr Name",
+      email: "E-Mail",
+      phone: "Telefon",
+      reason: "Anfrageanlass",
+      reasons: {
+        test_drive: "Probefahrt",
+        consultation: "Beratung",
+        price: "Preisanfrage",
+        other: "Sonstiges",
+      },
+      submit: "Absenden",
+      successTitle: "Anfrage eingegangen",
+      successBody: "Wir melden uns in Kürze bei Ihnen.",
+      alreadyTitle: "Bereits eingereicht",
+      alreadyBody:
+        "Sie haben bereits eine Anfrage für dieses Modell gestellt. Unser Spezialist wird Sie bald kontaktieren.",
+      close: "Schließen",
+      selectPlaceholder: "Anlass auswählen",
+      message: "Ihre Anfrage beschreiben",
+      errors: {
+        nameMin: "Name muss mindestens 2 Zeichen enthalten",
+        nameMax: "Name darf 40 Zeichen nicht überschreiten",
+        nameLetters: "Name darf nur Buchstaben enthalten",
+        emailRequired: "E-Mail ist erforderlich",
+        emailInvalid: "Gültige E-Mail eingeben",
+        emailMax: "E-Mail darf 50 Zeichen nicht überschreiten",
+        phoneRequired: "Telefon ist erforderlich",
+        phoneFormat: "Format: +7 (999) 999-99-99",
+        reasonRequired: "Bitte wählen Sie einen Anlass",
+        messageRequired: "Bitte beschreiben Sie Ihre Anfrage",
+        messageMin: "Nachricht muss mindestens 10 Zeichen enthalten",
+      },
+    },
   },
 } as const;
 

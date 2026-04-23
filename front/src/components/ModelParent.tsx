@@ -5,7 +5,6 @@ import ModelComponent from "./ModelComponent";
 import TextContent from "./TextContent";
 import Advantages from "./Advantages";
 import Faq from "./Faq";
-import Footer from "./Footer";
 import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/components/model-parent.module.scss";
 
@@ -32,7 +31,20 @@ interface ModelParentProps {
 }
 
 const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
-  ({ heroTitle, description, moreModels, annotations, advantages, advantagesLearnMore, faqTitle, faqItems, progress }, ref) => {
+  (
+    {
+      heroTitle,
+      description,
+      moreModels,
+      annotations,
+      advantages,
+      advantagesLearnMore,
+      faqTitle,
+      faqItems,
+      progress,
+    },
+    ref,
+  ) => {
     const [activeAnnotation, setActiveAnnotation] = useState<string | null>(
       annotations.length > 0 ? annotations[0].id : null,
     );
@@ -104,7 +116,6 @@ const ModelParent = forwardRef<HTMLDivElement, ModelParentProps>(
 
         <Advantages items={advantages} learnMore={advantagesLearnMore} />
         <Faq title={faqTitle} items={faqItems} />
-        <Footer />
       </div>
     );
   },

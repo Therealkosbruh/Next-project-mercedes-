@@ -1,19 +1,54 @@
 export const MODEL_TYPES = [
-  { name: 'S-Class',  description: 'Flagship luxury sedan — pinnacle of comfort and technology.' },
-  { name: 'G-Class',  description: 'Iconic off-road SUV with military roots and modern luxury.' },
-  { name: 'E-Class',  description: 'Business-class sedan combining elegance and performance.' },
-  { name: 'C-Class',  description: 'Compact executive saloon with sporty character.' },
-  { name: 'GLE',      description: 'Premium mid-size SUV with AMG performance options.' },
-  { name: 'GLS',      description: 'Full-size luxury SUV — the S-Class of off-roaders.' },
-  { name: 'A-Class',  description: 'Sporty compact hatchback with cutting-edge MBUX technology.' },
-  { name: 'CLA',      description: 'Four-door coupe blending athletic design with everyday usability.' },
-  { name: 'CLS',      description: 'Four-door gran coupe — where elegance meets performance.' },
-  { name: 'EQS',      description: 'Electric flagship sedan with a range of up to 770 km.' },
-  { name: 'EQE',      description: 'Electric mid-size sedan — the E-Class of the EQ family.' },
+  {
+    name: 'S-Class',
+    description: 'Flagship luxury sedan — pinnacle of comfort and technology.',
+  },
+  {
+    name: 'G-Class',
+    description: 'Iconic off-road SUV with military roots and modern luxury.',
+  },
+  {
+    name: 'E-Class',
+    description: 'Business-class sedan combining elegance and performance.',
+  },
+  {
+    name: 'C-Class',
+    description: 'Compact executive saloon with sporty character.',
+  },
+  {
+    name: 'GLE',
+    description: 'Premium mid-size SUV with AMG performance options.',
+  },
+  {
+    name: 'GLS',
+    description: 'Full-size luxury SUV — the S-Class of off-roaders.',
+  },
+  {
+    name: 'A-Class',
+    description: 'Sporty compact hatchback with cutting-edge MBUX technology.',
+  },
+  {
+    name: 'CLA',
+    description:
+      'Four-door coupe blending athletic design with everyday usability.',
+  },
+  {
+    name: 'CLS',
+    description: 'Four-door gran coupe — where elegance meets performance.',
+  },
+  {
+    name: 'EQS',
+    description: 'Electric flagship sedan with a range of up to 770 km.',
+  },
+  {
+    name: 'EQE',
+    description: 'Electric mid-size sedan — the E-Class of the EQ family.',
+  },
 ] as const;
 
 export const PREVIEW_IMG = '/images/modelCardView/mercedes_5_side_right.png';
-export const HOVER_PREVIEW_IMG = '/images/modelCardView/mercedes_2_front_three_quarter.png';
+export const HOVER_PREVIEW_IMG =
+  '/images/modelCardView/mercedes_2_front_three_quarter.png';
 
 export const DETAIL_IMAGES = [
   '/images/modelCardView/mercedes_1_side_left.png',
@@ -53,7 +88,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 89900,
     description:
       'The GLE 450 combines a silky-smooth inline-six with 48V mild-hybrid assistance for effortless power delivery. Air suspension, E-ACTIVE BODY CONTROL, and a spacious interior make every journey first-class.',
-    shortDescription: 'Мощный mid-size SUV с плавной пневмоподвеской и просторным салоном',
+    shortDescription:
+      'Мощный mid-size SUV с плавной пневмоподвеской и просторным салоном',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gle.glb',
@@ -75,7 +111,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 154000,
     description:
       'The GLE 63 S AMG is the pinnacle of performance SUV engineering — a hand-built 4.0 L biturbo V8 producing 612 hp, AMG SPEEDSHIFT MCT 9-speed transmission, and active aerodynamics that defy physics.',
-    shortDescription: 'Флагманский AMG SUV с 612-сильным битурбо V8 и активной аэродинамикой',
+    shortDescription:
+      'Флагманский AMG SUV с 612-сильным битурбо V8 и активной аэродинамикой',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gle.glb',
@@ -99,7 +136,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 104900,
     description:
       'Three rows, seven seats, and flagship technology — the GLS 450 is the S-Class of SUVs. E-ACTIVE BODY CONTROL adjusts each wheel independently for a magic-carpet ride on any surface.',
-    shortDescription: '7-местный роскошный SUV с технологиями флагмана Mercedes-Benz',
+    shortDescription:
+      '7-местный роскошный SUV с технологиями флагмана Mercedes-Benz',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gls.glb',
@@ -121,7 +159,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 189000,
     description:
       'The GLS 600 Maybach redefines luxury travel. Hand-stitched leather, a refrigerated compartment for champagne, rear-axle steering, and a 4.0 L biturbo V8 make this the ultimate expression of Maybach excess.',
-    shortDescription: 'Ультра-люксовый Maybach SUV с шампанским и 550-сильным V8',
+    shortDescription:
+      'Ультра-люксовый Maybach SUV с шампанским и 550-сильным V8',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/gls.glb',
@@ -145,7 +184,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 119900,
     description:
       'The S 500 sets the benchmark for the entire automotive industry. MBUX Hyperscreen, rear-axle steering, augmented reality navigation, and massaging seats — every detail exists to make perfection feel natural.',
-    shortDescription: 'Флагманский седан с MBUX Hyperscreen и революционными технологиями',
+    shortDescription:
+      'Флагманский седан с MBUX Hyperscreen и революционными технологиями',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/s-class.glb',
@@ -167,7 +207,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 234000,
     description:
       'An 802 hp hybrid powertrain combining a hand-built 4.0 L biturbo V8 with a rear-axle electric motor. The S 63 AMG E Performance accelerates 0–100 km/h in 3.3 s while offering the comfort of an S-Class.',
-    shortDescription: 'Гибридный AMG флагман с 802 л.с. и электрическим задним мостом',
+    shortDescription:
+      'Гибридный AMG флагман с 802 л.с. и электрическим задним мостом',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/s-class.glb',
@@ -213,7 +254,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 62900,
     description:
       'The all-new E 300 brings S-Class technology to the business segment. A 2.0 L turbocharged four-cylinder with 48V mild hybrid, a 12.3-inch driver display, and a 14.4-inch MBUX touchscreen define a new era of the E-Class.',
-    shortDescription: 'Элегантный бизнес-седан с технологиями S-класса и мягким гибридом',
+    shortDescription:
+      'Элегантный бизнес-седан с технологиями S-класса и мягким гибридом',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/e-class.glb',
@@ -235,7 +277,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 98900,
     description:
       'The E 53 AMG bridges everyday luxury and AMG performance. Its electrified inline-six produces 449 hp, complemented by AMG RIDE CONTROL+ adaptive suspension, and a sport exhaust that turns heads on every street.',
-    shortDescription: 'Мягкий гибрид AMG: 449 л.с. спортивного характера в деловом обличии',
+    shortDescription:
+      'Мягкий гибрид AMG: 449 л.с. спортивного характера в деловом обличии',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/e-class.glb',
@@ -259,7 +302,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 48900,
     description:
       'The C 300 brings flagship-level refinement to a compact package. A turbocharged 2.0 L four-cylinder with mild-hybrid assistance, a 11.9-inch portrait touchscreen, and S-Class-inspired design create a car that overdelivers.',
-    shortDescription: 'Компактный седан с технологиями флагмана в доступном формате',
+    shortDescription:
+      'Компактный седан с технологиями флагмана в доступном формате',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/c-class.glb',
@@ -281,7 +325,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 68900,
     description:
       'The new C 43 AMG ditches the old V6 for a turbocharged 2.0 L four-cylinder making 408 hp — supplemented by an EQ Boost integrated starter-generator. The result is a compact AMG that is quicker, smarter, and greener.',
-    shortDescription: 'Горячий AMG компакт с 408-сильной турбо четвёркой и полным приводом',
+    shortDescription:
+      'Горячий AMG компакт с 408-сильной турбо четвёркой и полным приводом',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/c-class.glb',
@@ -305,7 +350,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 34900,
     description:
       'The A 200 is a dynamic compact hatchback with a turbocharged 1.3 L engine and a MBUX infotainment system that learns your habits. Crisp steering, a sporty stance, and optional AMG Line make it a statement on any road.',
-    shortDescription: 'Динамичный компакт-хэтчбек с MBUX и острым спортивным характером',
+    shortDescription:
+      'Динамичный компакт-хэтчбек с MBUX и острым спортивным характером',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/a-class.glb',
@@ -329,7 +375,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 52900,
     description:
       'The CLA 250 4MATIC fuses the sleek silhouette of a coupe with the practicality of a four-door. AWD grip, a 224 hp turbocharged engine, and an aerodynamic Cd of 0.23 make it the most aerodynamic production Mercedes ever.',
-    shortDescription: 'Стремительное купе-седан с полным приводом и рекордной аэродинамикой',
+    shortDescription:
+      'Стремительное купе-седан с полным приводом и рекордной аэродинамикой',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/cla.glb',
@@ -353,7 +400,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 88900,
     description:
       'The CLS 450 is the original four-door gran coupe — the car that started a genre. Its inline-six with EQ Boost delivers seamless power, while the flowing roofline and panoramic roof create an atmosphere unlike any other.',
-    shortDescription: '4-дверное гран-купе: самый красивый способ добраться из А в Б',
+    shortDescription:
+      '4-дверное гран-купе: самый красивый способ добраться из А в Б',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/cls.glb',
@@ -377,7 +425,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 149000,
     description:
       'For over four decades the G-Class has conquered every terrain on earth. The G 500 pairs a 422 hp 4.0 L V8 with three differential locks, portal axles, and a legendary body-on-frame construction that no obstacle can stop.',
-    shortDescription: 'Легендарный Geländewagen: непобедимый стиль и непобедимая проходимость',
+    shortDescription:
+      'Легендарный Geländewagen: непобедимый стиль и непобедимая проходимость',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/g-class.glb',
@@ -399,7 +448,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 189000,
     description:
       'The G 63 AMG takes the indestructible G-Class and infuses it with hand-built AMG performance. A 585 hp biturbo V8, AMG SPEEDSHIFT TCT 9G transmission, and three differential locks deliver an experience that is completely unique.',
-    shortDescription: 'AMG-версия иконы: 585 л.с. и три дифференциальных блокировки',
+    shortDescription:
+      'AMG-версия иконы: 585 л.с. и три дифференциальных блокировки',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/g-class.glb',
@@ -422,8 +472,9 @@ export const CAR_DATA: CarSeed[] = [
     modelNumber: 'EQS 450+',
     price: 109900,
     description:
-      'The EQS 450+ is Mercedes-Benz\'s first purpose-built electric flagship. A rear-mounted motor producing 333 hp, a 107.8 kWh battery, and a WLTP range of up to 770 km set a new electric benchmark — complemented by MBUX Hyperscreen.',
-    shortDescription: 'Первый электрический флагман Mercedes с запасом хода до 770 км',
+      "The EQS 450+ is Mercedes-Benz's first purpose-built electric flagship. A rear-mounted motor producing 333 hp, a 107.8 kWh battery, and a WLTP range of up to 770 km set a new electric benchmark — complemented by MBUX Hyperscreen.",
+    shortDescription:
+      'Первый электрический флагман Mercedes с запасом хода до 770 км',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/eqs.glb',
@@ -447,7 +498,8 @@ export const CAR_DATA: CarSeed[] = [
     price: 79900,
     description:
       'The EQE 350+ brings the silence and efficiency of pure electric driving to the business segment. Its 292 hp rear motor and 90.6 kWh battery deliver up to 660 km of WLTP range — with the refined interior you expect from an E-Class.',
-    shortDescription: 'Электрический E-класс: бесшумная роскошь и 660 км без зарядки',
+    shortDescription:
+      'Электрический E-класс: бесшумная роскошь и 660 км без зарядки',
     preview: PREVIEW_IMG,
     hoverPreview: HOVER_PREVIEW_IMG,
     model: '/models/eqe.glb',
@@ -467,14 +519,14 @@ export const CAR_DATA: CarSeed[] = [
 ];
 
 export const COLORS_PALETTE = [
-  { name: 'Obsidian Black',                    hex: '#0b0b0b' },
-  { name: 'Polar White',                       hex: '#f5f5f0' },
-  { name: 'Iridium Silver',                    hex: '#a8a9aa' },
-  { name: 'Mojave Silver',                     hex: '#c4bfb6' },
-  { name: 'Graphite Grey',                     hex: '#4a4a4a' },
-  { name: 'Cavansite Blue',                    hex: '#2e5fa3' },
-  { name: 'Brilliant Blue',                    hex: '#1b3f7a' },
-  { name: 'Patagonia Red',                     hex: '#9b1a1a' },
-  { name: 'Emerald Green',                     hex: '#2d6a4f' },
-  { name: 'Designo Manufaktur Maybach Gold',   hex: '#c5a028' },
+  { name: 'Obsidian Black', hex: '#0b0b0b' },
+  { name: 'Polar White', hex: '#f5f5f0' },
+  { name: 'Iridium Silver', hex: '#a8a9aa' },
+  { name: 'Mojave Silver', hex: '#c4bfb6' },
+  { name: 'Graphite Grey', hex: '#4a4a4a' },
+  { name: 'Cavansite Blue', hex: '#2e5fa3' },
+  { name: 'Brilliant Blue', hex: '#1b3f7a' },
+  { name: 'Patagonia Red', hex: '#9b1a1a' },
+  { name: 'Emerald Green', hex: '#2d6a4f' },
+  { name: 'Designo Manufaktur Maybach Gold', hex: '#c5a028' },
 ] as const;

@@ -1,7 +1,16 @@
 import ky from "ky";
 import type { CarsPage, CarDetail } from "@/lib/types";
 
-export type { CarColor, CarModelType, CarListItem, CarDetail, CarsPage, SortKey, ViewMode, FilterState } from "@/lib/types";
+export type {
+  CarColor,
+  CarModelType,
+  CarListItem,
+  CarDetail,
+  CarsPage,
+  SortKey,
+  ViewMode,
+  FilterState,
+} from "@/lib/types";
 
 const api = ky.extend({
   prefix: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api",

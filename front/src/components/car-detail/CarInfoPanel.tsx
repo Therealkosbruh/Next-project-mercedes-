@@ -1,7 +1,9 @@
+"use client";
+
 import { memo } from "react";
-import Link from "next/link";
 import type { CarDetail } from "@/lib/types";
 import type { BadgeInfo } from "@/lib/car-detail-helpers";
+import { CONSULTATION_SECTION_ID } from "./ConsultationForm";
 import styles from "@/styles/components/car-detail.module.scss";
 import type en from "@/i18n/en";
 
@@ -15,12 +17,18 @@ interface Props {
 }
 
 const BADGE_CLS: Record<BadgeInfo["variant"], string> = {
-  amg:     styles.amg,
-  eq:      styles.eq,
+  amg: styles.amg,
+  eq: styles.eq,
   maybach: styles.maybach,
 };
 
-const CarInfoPanel = memo(function CarInfoPanel({ car, dict, badge, lang }: Props) {
+function scrollToForm() {
+  document
+    .getElementById(CONSULTATION_SECTION_ID)
+    ?.scrollIntoView({ behavior: "smooth" });
+}
+
+const CarInfoPanel = memo(function CarInfoPanel({ car, dict, badge }: Props) {
   const metaParts = [car.year, car.bodyType].filter(Boolean).join(" · ");
 
   return (
@@ -63,9 +71,9 @@ const CarInfoPanel = memo(function CarInfoPanel({ car, dict, badge, lang }: Prop
         </div>
       )}
 
-      <Link href={`/${lang}/cars`} className={styles.ctaBtn}>
+      <button className={styles.ctaBtn} onClick={scrollToForm}>
         {dict.requestConsultation}
-      </Link>
+      </button>
     </div>
   );
 });

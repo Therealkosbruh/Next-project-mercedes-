@@ -8,5 +8,7 @@ const dictionaries: Record<Locale, typeof en> = { en, de };
 
 export const getDictionary = async (locale: string) => {
   const key = locale as Locale;
-  return key in dictionaries ? dictionaries[key] : dictionaries[i18n.defaultLocale];
+  return key in dictionaries
+    ? dictionaries[key]
+    : dictionaries[i18n.defaultLocale];
 };

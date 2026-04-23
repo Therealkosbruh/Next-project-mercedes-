@@ -1,4 +1,9 @@
-import type { CarListItem, FilterState, StringArrayFilterKey, BooleanFilterKey } from "@/lib/types";
+import type {
+  CarListItem,
+  FilterState,
+  StringArrayFilterKey,
+  BooleanFilterKey,
+} from "@/lib/types";
 import { POWER_MIN, POWER_MAX } from "@/store/catalogStore";
 
 type Predicate = (car: CarListItem) => boolean;
@@ -7,7 +12,8 @@ export const byQuery =
   (q: string): Predicate =>
   (car) => {
     if (!q.trim()) return true;
-    const haystack = `${car.modelNumber} ${car.shortDescription ?? ""} ${car.bodyType ?? ""} ${car.fuelType ?? ""}`.toLowerCase();
+    const haystack =
+      `${car.modelNumber} ${car.shortDescription ?? ""} ${car.bodyType ?? ""} ${car.fuelType ?? ""}`.toLowerCase();
     return haystack.includes(q.toLowerCase());
   };
 
@@ -21,7 +27,13 @@ export const byChip =
   };
 
 export const byStringArray =
-  (values: string[], field: keyof Pick<CarListItem, "bodyType" | "fuelType" | "transmission" | "driveType">): Predicate =>
+  (
+    values: string[],
+    field: keyof Pick<
+      CarListItem,
+      "bodyType" | "fuelType" | "transmission" | "driveType"
+    >,
+  ): Predicate =>
   (car) => {
     if (!values.length) return true;
     const val = car[field];
@@ -64,7 +76,10 @@ export function buildPredicates(filters: FilterState): Predicate[] {
   ];
 }
 
-export function applyFilters(cars: CarListItem[], filters: FilterState): CarListItem[] {
+export function applyFilters(
+  cars: CarListItem[],
+  filters: FilterState,
+): CarListItem[] {
   const predicates = buildPredicates(filters);
   return cars.filter((car) => predicates.every((p) => p(car)));
 }
@@ -82,7 +97,10 @@ type FilterActions = {
   setFlag: (key: BooleanFilterKey, val: boolean) => void;
 };
 
-export function buildAppliedChips(filters: FilterState, actions: FilterActions): AppliedChip[] {
+export function buildAppliedChips(
+  filters: FilterState,
+  actions: FilterActions,
+): AppliedChip[] {
   const chips: AppliedChip[] = [];
 
   const strChipConfig: { key: StringArrayFilterKey; label: string }[] = [
@@ -110,7 +128,10 @@ export function buildAppliedChips(filters: FilterState, actions: FilterActions):
     });
   }
 
-  if (filters.powerRange[0] !== POWER_MIN || filters.powerRange[1] !== POWER_MAX) {
+  if (
+    filters.powerRange[0] !== POWER_MIN ||
+    filters.powerRange[1] !== POWER_MAX
+  ) {
     chips.push({
       key: "Power",
       label: `${filters.powerRange[0]}–${filters.powerRange[1]} HP`,
