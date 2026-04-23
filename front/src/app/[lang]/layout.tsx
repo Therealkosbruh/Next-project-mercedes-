@@ -1,7 +1,7 @@
 import { mbCorpo } from "@/lib/fonts";
 import { i18n, type Locale } from "@/i18n/config";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/Footer";
+import ConditionalFooter from "@/components/layout/ConditionalFooter";
 import "../../styles/globals.scss";
 
 export async function generateStaticParams() {
@@ -25,7 +25,7 @@ export default async function RootLayout({
       <body className={mbCorpo.className}>
         <Header lang={lang} />
         <main style={{ paddingTop: 64 }}>{children}</main>
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   );
