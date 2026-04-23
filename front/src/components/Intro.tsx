@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "@/styles/components/intro.module.scss";
 
 interface IntroProps {
@@ -10,12 +9,14 @@ export default function Intro({ mainTitle, shortCast }: IntroProps) {
   return (
     <div className={styles.intro}>
       <div className={styles.logoWrapper}>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/images/icons/mercedes-benz-logo.svg"
           alt="Mercedes Benz Logo"
           width={200}
           height={200}
-          priority
+          fetchPriority="high"
+          decoding="sync"
           className={styles.logo}
         />
       </div>

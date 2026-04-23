@@ -5,6 +5,7 @@ import PageContent from "@/components/PageContent";
 import type { Metadata } from "next";
 
 const GLB_PATH = "/models/g63/source/g-wagon.glb";
+const LOGO_PATH = "/images/icons/mercedes-benz-logo.svg";
 
 interface HomeProps {
   params: Promise<{ lang: string }>;
@@ -25,6 +26,7 @@ export async function generateMetadata({
 
 export default async function Home({ params }: HomeProps) {
   preload(GLB_PATH, { as: "fetch", crossOrigin: "anonymous" });
+  preload(LOGO_PATH, { as: "image" });
 
   const { lang: rawLang } = await params;
   const lang = rawLang as Locale;

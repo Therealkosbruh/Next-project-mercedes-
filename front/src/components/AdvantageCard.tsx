@@ -88,7 +88,7 @@ export default function AdvantageCard({
           src={image}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) calc(50vw - 60px), 560px"
           className={styles.image}
         />
         <div className={styles.imageOverlay}>

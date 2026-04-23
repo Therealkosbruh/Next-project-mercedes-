@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Intro from "./Intro";
 import type { AdvantageItem } from "./AdvantageCard";
@@ -48,8 +48,24 @@ export default function PageContent({
   faqItems,
 }: PageContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [modelReady, setModelReady] = useState(false);
+
   const introOpacity = Math.max(0, 1 - (scrollProgress - 0.2) / 0.5);
   const introScale = 1 - scrollProgress * 0.05;
+
+  const loadModel = useCallback(() => setModelReady(true), []);
+
+  useEffect(() => {
+    window.addEventListener("wheel", loadModel, { once: true, passive: true });
+    window.addEventListener("touchstart", loadModel, {
+      once: true,
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("wheel", loadModel);
+      window.removeEventListener("touchstart", loadModel);
+    };
+  }, [loadModel]);
 
   return (
     <main className={styles.pageWrapper}>
@@ -64,18 +80,20 @@ export default function PageContent({
         <Intro mainTitle={introMainTitle} shortCast={introShortCast} />
       </div>
 
-      <ModelParentWrapper
-        title={modelTitle}
-        heroTitle={modelHeroTitle}
-        description={modelDescription}
-        moreModels={moreModels}
-        annotations={annotations}
-        advantages={advantages}
-        advantagesLearnMore={advantagesLearnMore}
-        faqTitle={faqTitle}
-        faqItems={faqItems}
-        onProgressChange={setScrollProgress}
-      />
+      {modelReady && (
+        <ModelParentWrapper
+          title={modelTitle}
+          heroTitle={modelHeroTitle}
+          description={modelDescription}
+          moreModels={moreModels}
+          annotations={annotations}
+          advantages={advantages}
+          advantagesLearnMore={advantagesLearnMore}
+          faqTitle={faqTitle}
+          faqItems={faqItems}
+          onProgressChange={setScrollProgress}
+        />
+      )}
     </main>
   );
 }

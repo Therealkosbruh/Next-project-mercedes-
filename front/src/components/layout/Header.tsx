@@ -19,7 +19,6 @@ export default function Header({ lang }: Props) {
           width={220}
           height={38}
           unoptimized
-          priority
           style={{ width: "auto", height: 38 }}
         />
       </Link>
