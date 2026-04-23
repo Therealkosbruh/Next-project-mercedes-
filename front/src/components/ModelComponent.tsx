@@ -179,8 +179,8 @@ export default function ModelComponent({
         </div>
       )}
       <Canvas
-        style={{ width: "100%", height: "100%" }}
-        gl={{ antialias: true }}
+        style={{ width: "100%", height: "100%", background: "transparent" }}
+        gl={{ antialias: true, alpha: true }}
       >
         <PerspectiveCamera makeDefault position={[8, 3, 8]} fov={50} />
 
@@ -201,9 +201,8 @@ export default function ModelComponent({
             annotations={annotations}
             onLoaded={() => setLoading(false)}
           />
+          <Environment preset="sunset" />
         </Suspense>
-
-        <Environment preset="sunset" />
       </Canvas>
     </div>
   );

@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Intro from "./Intro";
-import ModelParentWrapper from "./ModelParentWrapper";
 import type { AdvantageItem } from "./AdvantageCard";
 import styles from "@/styles/page.module.scss";
+
+const ModelParentWrapper = dynamic(() => import("./ModelParentWrapper"), {
+  ssr: false,
+  loading: () => null,
+});
 
 interface Annotation {
   readonly id: string;

@@ -1,7 +1,10 @@
+import { preload } from "react-dom";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
 import PageContent from "@/components/PageContent";
 import type { Metadata } from "next";
+
+const GLB_PATH = "/models/g63/source/g-wagon.glb";
 
 interface HomeProps {
   params: Promise<{ lang: Locale }>;
@@ -20,6 +23,8 @@ export async function generateMetadata({
 }
 
 export default async function Home({ params }: HomeProps) {
+  preload(GLB_PATH, { as: "fetch", crossOrigin: "anonymous" });
+
   const { lang } = await params;
   const dict = await getDictionary(lang);
 

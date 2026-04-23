@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "preview": "next build && next start",
+    "lint": "eslint",
+    "compress-model": "gltf-transform draco public/models/g63/source/g-wagon.glb public/models/g63/source/g-wagon.glb"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -26,6 +28,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@gltf-transform/cli": "^4.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

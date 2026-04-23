@@ -1,16 +1,13 @@
-export default function ArrowRightIcon({ size = 14 }: { size?: number }) {
+export default function ArrowRightIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={Math.round(size * 0.72)}
-      viewBox="0 0 14 10"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M1 5h11m0 0L8 1m4 4L8 9" />
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+      <path
+        d="M6 3l5 5-5 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
