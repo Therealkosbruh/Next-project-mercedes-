@@ -67,6 +67,19 @@ export default function PageContent({
     };
   }, [loadModel]);
 
+  useEffect(() => {
+    const prefetch = () => {
+      import("./ModelParentWrapper");
+    };
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(prefetch, { timeout: 4000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      const t = setTimeout(prefetch, 2000);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
   return (
     <main className={styles.pageWrapper}>
       <div

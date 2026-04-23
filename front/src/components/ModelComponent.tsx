@@ -168,16 +168,16 @@ export default function ModelComponent({
   onAnnotationClick,
   annotations,
 }: ModelComponentProps) {
-  const [loading, setLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   return (
-    <div className={parentStyles.modelCanvasWrap}>
-      {loading && (
-        <div className={parentStyles.modelLoader}>
-          <span className={parentStyles.modelLoaderRing} />
-          <span className={parentStyles.modelLoaderLabel}>Loading</span>
-        </div>
-      )}
+    <div
+      className={parentStyles.modelCanvasWrap}
+      style={{
+        opacity: visible ? 1 : 0,
+        transition: "opacity 1s ease",
+      }}
+    >
       <Canvas
         style={{ width: "100%", height: "100%", background: "transparent" }}
         gl={{ antialias: true, alpha: true }}
@@ -199,7 +199,7 @@ export default function ModelComponent({
             activeAnnotation={activeAnnotation}
             onAnnotationClick={onAnnotationClick}
             annotations={annotations}
-            onLoaded={() => setLoading(false)}
+            onLoaded={() => setVisible(true)}
           />
           <Environment preset="sunset" />
         </Suspense>
