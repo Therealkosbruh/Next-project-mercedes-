@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import type { Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { fetchCarBySlug } from "@/lib/api";
 import CarDetailPage from "@/components/car-detail/CarDetailPage";
@@ -8,7 +8,7 @@ import styles from "@/styles/components/car-detail.module.scss";
 import Link from "next/link";
 
 interface Props {
-  params: Promise<{ lang: Locale; slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CarSlugPage({ params }: Props) {
-  const { lang, slug } = await params;
+  const { lang: rawLang, slug } = await params;
+  const lang = rawLang as Locale;
   const dict = await getDictionary(lang);
 
   let car = null;

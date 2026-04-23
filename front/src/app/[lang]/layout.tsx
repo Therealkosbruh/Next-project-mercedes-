@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { mbCorpo } from "@/lib/fonts";
 import { i18n, type Locale } from "@/i18n/config";
 import Header from "@/components/layout/Header";
@@ -11,14 +10,15 @@ export async function generateStaticParams() {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }
 
 export default async function RootLayout({
   children,
   params,
 }: RootLayoutProps) {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
 
   return (
     <html lang={lang} className={mbCorpo.variable}>

@@ -7,13 +7,14 @@ import type { Metadata } from "next";
 const GLB_PATH = "/models/g63/source/g-wagon.glb";
 
 interface HomeProps {
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: HomeProps): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   const dict = await getDictionary(lang);
 
   return {
@@ -25,7 +26,8 @@ export async function generateMetadata({
 export default async function Home({ params }: HomeProps) {
   preload(GLB_PATH, { as: "fetch", crossOrigin: "anonymous" });
 
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   const dict = await getDictionary(lang);
 
   return (

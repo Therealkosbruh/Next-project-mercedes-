@@ -5,11 +5,12 @@ import { fetchCarsPage } from "@/lib/api";
 import CatalogPage from "@/components/catalog/CatalogPage";
 
 interface Props {
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   const dict = await getDictionary(lang);
   return {
     title: dict.catalog.metaTitle,
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CarsPage({ params }: Props) {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
 
   let initialData = null;
   const dict = await getDictionary(lang);
