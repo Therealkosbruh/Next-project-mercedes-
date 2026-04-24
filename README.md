@@ -148,10 +148,6 @@ npm run preview   # next build && next start
 ---
 
 ## Демо
-
-> Вставить GIF демонстрацию
-
 <img src="docs/demo.gif" width="900" alt="Demo" />
-
 ---
 
