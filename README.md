@@ -148,6 +148,9 @@ npm run preview   # next build && next start
 ---
 
 ## Демо
-<img src="docs/demo.gif" width="900" alt="Demo" />
----
+
+Живое демо: [next-project-mercedes.vercel.app](https://next-project-mercedes.vercel.app)
+
+<img src="docs/demo.gif" alt="Demo" />
+
 
