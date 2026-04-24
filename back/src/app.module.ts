@@ -12,11 +12,15 @@ import { CarsModule } from './cars/cars.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
+        url: config.get<string>('DATABASE_URL'),
         host: config.get<string>('DB_HOST', 'localhost'),
         port: config.get<number>('DB_PORT', 5432),
         username: config.get<string>('DB_USER', 'postgres'),
         password: config.get<string>('DB_PASSWORD', 'postgres'),
         database: config.get<string>('DB_NAME', 'mercedes'),
+        ssl: config.get<string>('DATABASE_URL')
+          ? { rejectUnauthorized: false }
+          : false,
         entities: [__dirname + '/**/*.entity.{ts,js}'],
         migrations: [__dirname + '/database/migrations/*.{ts,js}'],
         synchronize: false,

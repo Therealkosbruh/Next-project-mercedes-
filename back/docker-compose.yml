@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    image: mercedes-back
+    container_name: mercedes_back
+    restart: always
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - "${PORT}:${PORT}"
